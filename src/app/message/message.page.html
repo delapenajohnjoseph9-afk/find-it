@@ -1,0 +1,228 @@
+<ion-content [fullscreen]="true">
+
+  <div class="message-page">
+
+    <!-- HEADER -->
+    <div class="top-header">
+
+      <button
+        type="button"
+        class="back-button"
+        (click)="goToHome()">
+        ←
+      </button>
+
+      <div class="page-title">
+        Messages
+      </div>
+
+      <div class="header-space"></div>
+
+    </div>
+
+
+    <!-- SEARCH BAR -->
+    <div class="search-box">
+
+      <span class="search-icon">⌕</span>
+
+      <input
+        type="text"
+        placeholder="Search messages..."
+      />
+
+    </div>
+
+
+    <!-- MESSAGE LIST -->
+    <div class="message-list">
+
+      <!-- MESSAGE 1 -->
+      <button
+        type="button"
+        class="message-item">
+
+        <div class="avatar">
+          J
+        </div>
+
+        <div class="message-info">
+
+          <div class="message-top">
+
+            <span class="message-name">
+              John
+            </span>
+
+            <span class="message-time">
+              10:30 AM
+            </span>
+
+          </div>
+
+          <div class="message-preview">
+            Is the product still available?
+          </div>
+
+        </div>
+
+        <div class="unread-dot"></div>
+
+      </button>
+
+
+      <!-- MESSAGE 2 -->
+      <button
+        type="button"
+        class="message-item">
+
+        <div class="avatar">
+          M
+        </div>
+
+        <div class="message-info">
+
+          <div class="message-top">
+
+            <span class="message-name">
+              Mark
+            </span>
+
+            <span class="message-time">
+              9:15 AM
+            </span>
+
+          </div>
+
+          <div class="message-preview">
+            Thank you for the information.
+          </div>
+
+        </div>
+
+      </button>
+
+
+      <!-- MESSAGE 3 -->
+      <button
+        type="button"
+        class="message-item">
+
+        <div class="avatar">
+          A
+        </div>
+
+        <div class="message-info">
+
+          <div class="message-top">
+
+            <span class="message-name">
+              Anna
+            </span>
+
+            <span class="message-time">
+              Yesterday
+            </span>
+
+          </div>
+
+          <div class="message-preview">
+            I found a cheaper price for it.
+          </div>
+
+        </div>
+
+      </button>
+
+
+      <!-- MESSAGE 4 -->
+      <button
+        type="button"
+        class="message-item">
+
+        <div class="avatar">
+          R
+        </div>
+
+        <div class="message-info">
+
+          <div class="message-top">
+
+            <span class="message-name">
+              Ryan
+            </span>
+
+            <span class="message-time">
+              Yesterday
+            </span>
+
+          </div>
+
+          <div class="message-preview">
+            Can you send me the product link?
+          </div>
+
+        </div>
+
+      </button>
+
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="bottom-navigation">
+
+      <!-- HOME -->
+      <button
+        type="button"
+        (click)="goToHome()">
+
+        <i class="fi fi-rs-home"></i>
+
+      </button>
+
+
+      <!-- CATEGORIES -->
+      <button
+        type="button"
+        (click)="goToCategories()">
+
+        <i class="fi fi-rs-apps"></i>
+
+      </button>
+
+
+      <!-- SCAN -->
+      <button
+        type="button"
+        (click)="goToScan()">
+
+        <i class="fi fi-rs-barcode-scan"></i>
+
+      </button>
+
+
+      <!-- MESSAGE -->
+      <button
+        type="button"
+        class="active">
+
+        <i class="fi fi-rs-comment"></i>
+
+      </button>
+
+
+      <!-- PROFILE -->
+      <button
+  type="button"
+  (click)="goToProfile()">
+
+  <i class="fi fi-rs-user"></i>
+
+</button>
+
+    </div>
+
+  </div>
+
+</ion-content>

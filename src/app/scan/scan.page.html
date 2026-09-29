@@ -1,0 +1,148 @@
+<ion-content [fullscreen]="true">
+
+  <div class="scan-page">
+
+    <!-- HEADER -->
+
+    <div class="top-header">
+
+      <button
+        type="button"
+        class="back-button"
+        (click)="goToHome()"
+      >
+        ←
+      </button>
+
+      <div class="page-title">
+        Scan Product
+      </div>
+
+      <div class="header-space"></div>
+
+    </div>
+
+
+    <!-- SCANNER CONTENT -->
+
+    <div class="scanner-content">
+
+      <div class="scanner-title">
+        Scan a Product
+      </div>
+
+      <div class="scanner-description">
+        Scan a barcode to compare product prices
+        across different stores.
+      </div>
+
+
+      <!-- SCANNER FRAME -->
+
+      <div class="scanner-frame">
+
+        <div class="corner top-left"></div>
+
+        <div class="corner top-right"></div>
+
+        <div class="corner bottom-left"></div>
+
+        <div class="corner bottom-right"></div>
+
+        <div class="scan-line"></div>
+
+      </div>
+
+
+      <div class="scanner-instruction">
+        Position the barcode inside the frame
+      </div>
+
+
+      <!-- SCAN BUTTON -->
+
+      <button
+        type="button"
+        class="start-scan-button"
+        (click)="startScan()"
+      >
+
+        <i class="fi fi-rs-barcode-scan"></i>
+
+        <span>
+          Start Scan
+        </span>
+
+      </button>
+
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+
+    <div class="bottom-navigation">
+
+
+      <!-- HOME -->
+
+      <button
+        type="button"
+        (click)="goToHome()"
+      >
+
+        <i class="fi fi-rs-home"></i>
+
+      </button>
+
+
+      <!-- CATEGORIES -->
+
+      <button
+        type="button"
+        (click)="goToCategories()"
+      >
+
+        <i class="fi fi-rs-apps"></i>
+
+      </button>
+
+
+      <!-- SCAN -->
+
+      <button
+        type="button"
+        class="active"
+      >
+
+        <i class="fi fi-rs-barcode-scan"></i>
+
+      </button>
+
+
+      <!-- MESSAGE -->
+
+      <button
+        type="button"
+        (click)="goToMessage()"
+      >
+
+        <i class="fi fi-rs-comment"></i>
+
+      </button>
+
+
+      <!-- PROFILE -->
+
+      <button
+  type="button"
+  (click)="goToProfile()">
+
+  <i class="fi fi-rs-user"></i>
+
+</button>
+
+    </div>
+
+  </div>
+
+</ion-content>

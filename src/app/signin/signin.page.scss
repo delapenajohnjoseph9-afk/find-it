@@ -1,0 +1,351 @@
+ion-content {
+  --background: #000000;
+}
+
+.signin-page {
+  width: 100%;
+  height: 100%;
+  background: #000000;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  overflow: hidden;
+}
+
+/* Screen container maintaining your aspect ratio */
+.signin-screen {
+  width: min(100vw, calc(100vh * (120 / 263)));
+  height: min(100vh, calc(100vw * (263 / 120)));
+
+  aspect-ratio: 120 / 263;
+
+  background: #0b0f19;
+
+  position: relative;
+
+  overflow-y: auto;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px 18px;
+
+  box-sizing: border-box;
+}
+
+/* Hide scrollbar for a clean mobile look */
+.signin-screen::-webkit-scrollbar {
+  display: none;
+}
+
+/* Header Title */
+.title {
+  color: #ffffff;
+
+  font-family: system-ui, -apple-system, sans-serif;
+
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  text-transform: capitalize;
+
+  align-self: center;
+
+  margin-bottom: 12px;
+}
+
+/* Logo Styling */
+.logo-circle {
+  width: 85px;
+  height: 85px;
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  margin-bottom: 16px;
+
+  box-shadow: 0 0 16px rgba(12, 140, 233, 0.35);
+}
+
+.logo-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+/* Form Input Fields */
+.input-field {
+  width: 88%;
+  height: 34px;
+
+  margin-bottom: 8px;
+
+  background: #ffffff;
+
+  border: 2px solid #0c8ce9;
+
+  border-radius: 50px;
+
+  padding: 0 14px;
+
+  box-sizing: border-box;
+
+  font-family: system-ui, -apple-system, sans-serif;
+
+  font-size: 0.78rem;
+
+  color: #0b0f19;
+
+  outline: none;
+}
+
+.input-field::placeholder {
+  color: #8c9ba5;
+}
+
+/* Small Option / Checkbox row */
+.small-option {
+  width: 88%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin: 4px 0 10px 0;
+}
+
+.small-box {
+  width: 14px;
+  height: 14px;
+
+  border: 1.5px solid #0c8ce9;
+
+  border-radius: 3px;
+
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.small-line {
+  height: 2px;
+  width: 60px;
+
+  background: #202632;
+
+  border-radius: 2px;
+}
+
+/* Primary Button */
+.button-row {
+  width: 88%;
+
+  margin-bottom: 8px;
+}
+
+.button-row button {
+  width: 100%;
+  height: 36px;
+
+  background: #0c8ce9;
+
+  color: #ffffff;
+
+  border: none;
+
+  border-radius: 50px;
+
+  font-family: system-ui, -apple-system, sans-serif;
+
+  font-weight: 700;
+  font-size: 0.85rem;
+
+  cursor: pointer;
+}
+
+/* Login Navigation Link */
+.login-link {
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+
+  font-family: system-ui, -apple-system, sans-serif;
+
+  font-size: 0.72rem;
+
+  color: #a0aec0;
+
+  margin-bottom: 12px;
+}
+
+.login-link button {
+  background: transparent;
+
+  border: none;
+
+  color: #0c8ce9;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  padding: 0;
+
+  font-size: 0.72rem;
+}
+
+/* Divider Elements */
+.divider {
+  width: 88%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-bottom: 12px;
+}
+
+.divider-line {
+  flex: 1;
+
+  height: 1px;
+
+  background: #202632;
+}
+
+.divider-dot {
+  width: 4px;
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #0c8ce9;
+}
+
+/* Social Login Buttons */
+.social-button {
+  width: 88%;
+  height: 34px;
+
+  border-radius: 50px;
+
+  border: none;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-bottom: 8px;
+
+  font-family: system-ui, -apple-system, sans-serif;
+
+  font-size: 0.75rem;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.google-button {
+  background: #ffffff;
+
+  color: #0b0f19;
+}
+
+.facebook-button {
+  background: #1877f2;
+
+  color: #ffffff;
+}
+
+.google-icon,
+.facebook-icon {
+  font-weight: 800;
+
+  font-size: 0.85rem;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 600px) {
+
+  .signin-screen {
+    width: min(100vw, calc(100vh * (120 / 263)));
+
+    height: min(100vh, calc(100vw * (263 / 120)));
+  }
+
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+
+  .signin-screen {
+    width: min(55vw, calc(80vh * (120 / 263)));
+
+    height: min(80vh, calc(55vw * (263 / 120)));
+  }
+
+}
+
+@media (min-width: 1025px) {
+
+  .signin-screen {
+    width: min(30vw, calc(85vh * (120 / 263)));
+
+    height: min(85vh, calc(30vw * (263 / 120)));
+  }
+
+}
+
+/* Loading Animation */
+.loader {
+  width: 13px;
+  height: 13px;
+
+  border: 2px solid rgba(255, 255, 255, 0.35);
+
+  border-top: 2px solid #ffffff;
+
+  border-radius: 50%;
+
+  animation: spin 0.7s linear infinite;
+
+  display: block;
+
+  margin: auto;
+}
+
+.social-loader {
+  border: 2px solid rgba(96, 57, 200, 0.25);
+
+  border-top: 2px solid #6039c8;
+}
+
+@keyframes spin {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}
+
+.social-button:disabled {
+  opacity: 0.85;
+
+  cursor: not-allowed;
+}

@@ -1,0 +1,227 @@
+<ion-content [fullscreen]="true">
+
+  <div class="categories-page">
+
+    <!-- HEADER -->
+    <div class="top-header">
+
+      <button
+        type="button"
+        class="back-button"
+        (click)="goToHome()">
+
+        ←
+
+      </button>
+
+      <div class="page-title">
+        Categories
+      </div>
+
+      <div class="header-space"></div>
+
+    </div>
+
+
+    <!-- SEARCH -->
+    <div class="search-box">
+
+      <span class="search-icon">⌕</span>
+
+      <input
+        type="text"
+        placeholder="Search categories..."
+      >
+
+    </div>
+
+
+    <!-- CATEGORY TITLE -->
+    <div class="section-title">
+      SHOP BY CATEGORY
+    </div>
+
+
+    <!-- CATEGORY GRID -->
+    <div class="category-grid">
+
+
+      <!-- SMARTPHONES -->
+      <div class="category-card">
+
+        <div class="category-icon">
+          📱
+        </div>
+
+        <div class="category-name">
+          Smartphones
+        </div>
+
+      </div>
+
+
+      <!-- LAPTOPS -->
+      <div class="category-card">
+
+        <div class="category-icon">
+          💻
+        </div>
+
+        <div class="category-name">
+          Laptops
+        </div>
+
+      </div>
+
+
+      <!-- HEADPHONES -->
+      <div class="category-card">
+
+        <div class="category-icon">
+          🎧
+        </div>
+
+        <div class="category-name">
+          Headphones
+        </div>
+
+      </div>
+
+
+      <!-- ACCESSORIES -->
+      <div class="category-card">
+
+        <div class="category-icon">
+          ⌨️
+        </div>
+
+        <div class="category-name">
+          Accessories
+        </div>
+
+      </div>
+
+
+      <!-- MONITORS -->
+      <div class="category-card">
+
+        <div class="category-icon">
+          🖥️
+        </div>
+
+        <div class="category-name">
+          Monitors
+        </div>
+
+      </div>
+
+
+      <!-- GAMING -->
+      <div class="category-card">
+
+        <div class="category-icon">
+          🎮
+        </div>
+
+        <div class="category-name">
+          Gaming
+        </div>
+
+      </div>
+
+
+      <!-- CAMERAS -->
+      <div class="category-card">
+
+        <div class="category-icon">
+          📷
+        </div>
+
+        <div class="category-name">
+          Cameras
+        </div>
+
+      </div>
+
+
+      <!-- SMARTWATCHES -->
+      <div class="category-card">
+
+        <div class="category-icon">
+          ⌚
+        </div>
+
+        <div class="category-name">
+          Smartwatches
+        </div>
+
+      </div>
+
+
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+    <div class="bottom-navigation">
+
+
+      <!-- HOME -->
+
+      <button
+        type="button"
+        (click)="goToHome()">
+
+        <i class="fi fi-rs-home"></i>
+
+      </button>
+
+
+      <!-- CATEGORIES -->
+
+      <button
+        type="button"
+        class="active">
+
+        <i class="fi fi-rs-apps"></i>
+
+      </button>
+
+
+      <!-- SCAN -->
+
+      <button
+        type="button"
+        (click)="goToScan()">
+
+        <i class="fi fi-rs-barcode-scan"></i>
+
+      </button>
+
+
+      <!-- MESSAGE -->
+
+      <button
+        type="button"
+        (click)="goToMessage()">
+
+        <i class="fi fi-rs-comment"></i>
+
+      </button>
+
+
+      <!-- PROFILE -->
+
+      <button
+  type="button"
+  (click)="goToProfile()">
+
+  <i class="fi fi-rs-user"></i>
+
+</button>
+
+
+    </div>
+
+  </div>
+
+</ion-content>

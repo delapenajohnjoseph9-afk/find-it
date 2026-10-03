@@ -1,0 +1,355 @@
+<ion-content [fullscreen]="true">
+
+  <div class="signin-page">
+
+    <div class="signin-screen">
+
+      <!-- Find It Logo -->
+      <div class="logo-circle">
+
+        <img
+          src="assets/find-it-logo.png"
+          alt="Find It Logo"
+          class="logo-image"
+        />
+
+      </div>
+
+
+      <!-- Full Name -->
+      <input
+        type="text"
+        class="input-field"
+        placeholder="Full Name"
+        [(ngModel)]="fullName"
+      >
+
+
+      <!-- Email -->
+      <input
+        type="email"
+        class="input-field"
+        placeholder="Email"
+        [(ngModel)]="email"
+      >
+
+
+      <!-- Username -->
+      <input
+        type="text"
+        class="input-field"
+        placeholder="Username"
+        [(ngModel)]="username"
+      >
+
+
+      <!-- Password -->
+      <input
+        [type]="showPassword ? 'text' : 'password'"
+        class="input-field"
+        placeholder="Password"
+        [(ngModel)]="password"
+      >
+
+
+      <!-- Show Password -->
+      <div
+        class="small-option"
+        (click)="togglePassword()"
+      >
+
+        <div
+          class="small-box"
+          [class.checked]="showPassword"
+        >
+
+          <span *ngIf="showPassword">
+            ✓
+          </span>
+
+        </div>
+
+        <div class="small-line">
+          Show Password
+        </div>
+
+      </div>
+
+
+      <!-- Validation Message -->
+      <div
+        class="error-message"
+        *ngIf="showError"
+      >
+        Please fill in all fields.
+      </div>
+
+
+      <!-- Sign Up Button -->
+      <div class="button-row">
+
+        <button
+          class="signup-button"
+          (click)="goToHome()"
+          [disabled]="isLoading"
+        >
+
+          <span *ngIf="!isLoading">
+            Sign Up
+          </span>
+
+          <span
+            *ngIf="isLoading"
+            class="loader"
+          ></span>
+
+        </button>
+
+      </div>
+
+
+      <!-- Already Have Account -->
+      <div class="login-link">
+
+        <span>
+          Already have an account?
+        </span>
+
+        <button
+          (click)="goToLogin()"
+        >
+          Log In
+        </button>
+
+      </div>
+
+
+      <!-- Divider -->
+      <div class="divider">
+
+        <div class="divider-line"></div>
+
+        <div class="divider-dot"></div>
+
+        <div class="divider-line"></div>
+
+      </div>
+
+
+      <!-- Google Account -->
+      <button
+        class="social-button google-button"
+        (click)="goToGoogle()"
+        [disabled]="isLoading"
+      >
+
+        <span
+          *ngIf="!isLoading || loadingType !== 'google'"
+        >
+
+          <span class="google-icon">
+            G
+          </span>
+
+          Continue with Google
+
+        </span>
+
+
+        <span
+          *ngIf="isLoading && loadingType === 'google'"
+          class="loader social-loader"
+        ></span>
+
+      </button>
+
+
+      <!-- Facebook Account -->
+      <button
+        class="social-button facebook-button"
+        (click)="goToFacebook()"
+        [disabled]="isLoading"
+      >
+
+        <span
+          *ngIf="!isLoading || loadingType !== 'facebook'"
+        >
+
+          <span class="facebook-icon">
+            f
+          </span>
+
+          Continue with Facebook
+
+        </span>
+
+
+        <span
+          *ngIf="isLoading && loadingType === 'facebook'"
+          class="loader social-loader"
+        ></span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================================= -->
+  <!-- GOOGLE PERMISSION POPUP -->
+  <!-- ================================= -->
+
+  <div
+    class="google-overlay"
+    *ngIf="showGooglePermission"
+  >
+
+    <div class="google-permission-box">
+
+      <!-- Google Logo -->
+      <div class="google-permission-icon">
+        G
+      </div>
+
+
+      <!-- Title -->
+      <div class="google-permission-title">
+        Continue with Google
+      </div>
+
+
+      <!-- Description -->
+      <div class="google-permission-text">
+        Find It would like to use your Google account
+        to continue signing in.
+      </div>
+
+
+      <!-- Google Account -->
+      <div class="google-account">
+
+        <div class="google-account-icon">
+          G
+        </div>
+
+        <div class="google-account-info">
+
+          <div class="google-account-name">
+            Google Account
+          </div>
+
+          <div class="google-account-email">
+            Continue with your Google account
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Permission Buttons -->
+      <div class="google-permission-buttons">
+
+        <button
+          type="button"
+          class="google-cancel-button"
+          (click)="cancelGooglePermission()"
+        >
+          Cancel
+        </button>
+
+
+        <button
+          type="button"
+          class="google-continue-button"
+          (click)="continueWithGoogle()"
+        >
+          Continue
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================================= -->
+<!-- FACEBOOK PERMISSION POPUP -->
+<!-- ================================= -->
+
+<div
+  class="facebook-overlay"
+  *ngIf="showFacebookPermission"
+>
+
+  <div class="facebook-permission-box">
+
+    <!-- Facebook Logo -->
+    <div class="facebook-permission-icon">
+      f
+    </div>
+
+
+    <!-- Title -->
+    <div class="facebook-permission-title">
+      Continue with Facebook
+    </div>
+
+
+    <!-- Description -->
+    <div class="facebook-permission-text">
+      Find It would like to use your Facebook
+      account to continue signing in.
+    </div>
+
+
+    <!-- Facebook Account -->
+    <div class="facebook-account">
+
+      <div class="facebook-account-icon">
+        f
+      </div>
+
+      <div class="facebook-account-info">
+
+        <div class="facebook-account-name">
+          Facebook Account
+        </div>
+
+        <div class="facebook-account-email">
+          Continue with your Facebook account
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Permission Buttons -->
+    <div class="facebook-permission-buttons">
+
+      <button
+        type="button"
+        class="facebook-cancel-button"
+        (click)="cancelFacebookPermission()"
+      >
+        Cancel
+      </button>
+
+
+      <button
+        type="button"
+        class="facebook-continue-button"
+        (click)="continueWithFacebook()"
+      >
+        Continue
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+</ion-content>

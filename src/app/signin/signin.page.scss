@@ -1,0 +1,1164 @@
+ion-content {
+  --background: #000000;
+
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+
+/* ==============================
+   SIGN IN PAGE
+   ============================== */
+
+.signin-page {
+
+  width: 100%;
+
+  max-width: 420px;
+
+  height: 100dvh;
+
+  margin: 0 auto;
+
+  background: #0b0f19;
+
+  color: #ffffff;
+
+  box-sizing: border-box;
+
+  font-family: Arial, sans-serif;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  overflow: hidden;
+
+  padding-top: env(safe-area-inset-top);
+
+}
+
+
+/* ==============================
+   SIGN IN SCREEN
+   ============================== */
+
+.signin-screen {
+
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+}
+
+
+/* ==============================
+   LOGO
+   ============================== */
+
+.logo-circle {
+
+  width: 100px;
+
+  height: 100px;
+
+  margin-bottom: 22px;
+
+  border-radius: 22px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  overflow: hidden;
+
+}
+
+
+.logo-image {
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+}
+
+
+/* ==============================
+   INPUT FIELDS
+   ============================== */
+
+.input-field {
+
+  width: 82%;
+
+  height: 42px;
+
+  margin-bottom: 10px;
+
+  padding: 0 18px;
+
+  box-sizing: border-box;
+
+  border: 2px solid #0c8ce9;
+
+  border-radius: 25px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #222222;
+
+  font-size: 14px;
+
+}
+
+
+.input-field::placeholder {
+
+  color: #888888;
+
+}
+
+
+.input-field:focus {
+
+  border-color: #0c8ce9;
+
+}
+
+
+/* ==============================
+   SHOW PASSWORD
+   ============================== */
+
+.small-option {
+
+  width: 82%;
+
+  margin: 2px auto 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  cursor: pointer;
+
+  user-select: none;
+
+}
+
+
+.small-box {
+
+  width: 17px;
+
+  height: 17px;
+
+  border: 1px solid #0c8ce9;
+
+  border-radius: 3px;
+
+  background: transparent;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  flex-shrink: 0;
+
+}
+
+
+.small-box.checked {
+
+  background: #0c8ce9;
+
+  color: #ffffff;
+
+}
+
+
+.small-box.checked span {
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  line-height: 1;
+
+}
+
+
+.small-line {
+
+  color: #888888;
+
+  font-size: 10px;
+
+  line-height: 17px;
+
+}
+
+
+/* ==============================
+   ERROR MESSAGE
+   ============================== */
+
+.error-message {
+
+  width: 82%;
+
+  margin: 0 auto 8px;
+
+  color: #0c8ce9;
+
+  font-size: 10px;
+
+  text-align: left;
+
+}
+
+
+/* ==============================
+   SIGN UP BUTTON
+   ============================== */
+
+.button-row {
+
+  width: 82%;
+
+  margin-top: 4px;
+
+}
+
+
+.signup-button {
+
+  width: 100%;
+
+  height: 42px;
+
+  border: none;
+
+  border-radius: 25px;
+
+  background: #0c8ce9;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+}
+
+
+.signup-button:disabled {
+
+  opacity: 0.7;
+
+}
+
+
+/* ==============================
+   LOGIN LINK
+   ============================== */
+
+.login-link {
+
+  margin-top: 12px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  font-size: 10px;
+
+  color: #888888;
+
+}
+
+
+.login-link button {
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #0c8ce9;
+
+  font-size: 10px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+}
+
+
+/* ==============================
+   DIVIDER
+   ============================== */
+
+.divider {
+
+  width: 82%;
+
+  margin: 16px 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+}
+
+
+.divider-line {
+
+  flex: 1;
+
+  height: 1px;
+
+  background: #30343d;
+
+}
+
+
+.divider-dot {
+
+  width: 4px;
+
+  height: 4px;
+
+  border-radius: 50%;
+
+  background: #555555;
+
+}
+
+
+/* ==============================
+   SOCIAL BUTTONS
+   ============================== */
+
+.social-button {
+
+  width: 82%;
+
+  height: 42px;
+
+  margin-bottom: 9px;
+
+  border: 1px solid #30343d;
+
+  border-radius: 25px;
+
+  background: #1a1d24;
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  cursor: pointer;
+
+}
+
+
+.social-button:disabled {
+
+  opacity: 0.7;
+
+}
+
+
+.google-icon {
+
+  margin-right: 8px;
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+}
+
+
+.facebook-icon {
+
+  margin-right: 8px;
+
+  color: #ffffff;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+}
+
+
+.social-loader {
+
+  margin: 0 auto;
+
+}
+
+
+/* ==============================
+   LOADER
+   ============================== */
+
+.loader {
+
+  width: 17px;
+
+  height: 17px;
+
+  border: 2px solid rgba(255, 255, 255, 0.35);
+
+  border-top: 2px solid #ffffff;
+
+  border-radius: 50%;
+
+  display: inline-block;
+
+  animation: spin 0.8s linear infinite;
+
+}
+
+
+@keyframes spin {
+
+  from {
+
+    transform: rotate(0deg);
+
+  }
+
+  to {
+
+    transform: rotate(360deg);
+
+  }
+
+}
+
+
+/* ==============================
+   RESPONSIVE
+   ============================== */
+
+@media (max-width: 380px) {
+
+  .logo-circle {
+
+    width: 85px;
+
+    height: 85px;
+
+    margin-bottom: 18px;
+
+  }
+
+  .input-field {
+
+    height: 39px;
+
+    font-size: 13px;
+
+  }
+
+  .signup-button {
+
+    height: 39px;
+
+    font-size: 13px;
+
+  }
+
+  .social-button {
+
+    height: 39px;
+
+  }
+
+}
+
+
+@media (min-width: 421px) {
+
+  .signin-page {
+
+    width: 420px;
+
+  }
+
+}
+
+/* ==============================
+   GOOGLE PERMISSION POPUP
+   ============================== */
+
+.google-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  background: rgba(0, 0, 0, 0.75);
+
+}
+
+
+/* ==============================
+   GOOGLE POPUP BOX
+   ============================== */
+
+.google-permission-box {
+
+  width: 100%;
+
+  max-width: 340px;
+
+  padding: 24px 20px 18px;
+
+  box-sizing: border-box;
+
+  background: #1a1d24;
+
+  border: 1px solid #30343d;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.55);
+
+  animation: googlePopupIn 0.25s ease-out;
+
+}
+
+
+/* ==============================
+   GOOGLE LOGO
+   ============================== */
+
+.google-permission-icon {
+
+  width: 48px;
+
+  height: 48px;
+
+  margin: 0 auto 14px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #ffffff;
+
+  color: #4285f4;
+
+  font-size: 24px;
+
+  font-weight: bold;
+
+}
+
+
+/* ==============================
+   TITLE
+   ============================== */
+
+.google-permission-title {
+
+  color: #ffffff;
+
+  text-align: center;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  margin-bottom: 10px;
+
+}
+
+
+/* ==============================
+   DESCRIPTION
+   ============================== */
+
+.google-permission-text {
+
+  color: #999999;
+
+  text-align: center;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+
+  margin-bottom: 18px;
+
+}
+
+
+/* ==============================
+   GOOGLE ACCOUNT
+   ============================== */
+
+.google-account {
+
+  width: 100%;
+
+  padding: 12px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  background: #0b0f19;
+
+  border: 1px solid #30343d;
+
+  border-radius: 12px;
+
+  margin-bottom: 20px;
+
+}
+
+
+/* ==============================
+   ACCOUNT GOOGLE ICON
+   ============================== */
+
+.google-account-icon {
+
+  width: 34px;
+
+  height: 34px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #ffffff;
+
+  color: #4285f4;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+}
+
+
+/* ==============================
+   ACCOUNT INFORMATION
+   ============================== */
+
+.google-account-info {
+
+  min-width: 0;
+
+}
+
+
+.google-account-name {
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  margin-bottom: 3px;
+
+}
+
+
+.google-account-email {
+
+  color: #777777;
+
+  font-size: 9px;
+
+}
+
+
+/* ==============================
+   PERMISSION BUTTONS
+   ============================== */
+
+.google-permission-buttons {
+
+  width: 100%;
+
+  display: flex;
+
+  gap: 10px;
+
+}
+
+
+.google-cancel-button,
+.google-continue-button {
+
+  flex: 1;
+
+  height: 40px;
+
+  border-radius: 22px;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+}
+
+
+/* ==============================
+   CANCEL
+   ============================== */
+
+.google-cancel-button {
+
+  background: transparent;
+
+  color: #aaaaaa;
+
+  border: 1px solid #3a3e47;
+
+}
+
+
+/* ==============================
+   CONTINUE
+   ============================== */
+
+.google-continue-button {
+
+  background: #0c8ce9;
+
+  color: #ffffff;
+
+  border: none;
+
+}
+
+
+/* ==============================
+   BUTTON PRESS
+   ============================== */
+
+.google-cancel-button:active,
+.google-continue-button:active {
+
+  transform: scale(0.97);
+
+}
+
+
+/* ==============================
+   POPUP ANIMATION
+   ============================== */
+
+@keyframes googlePopupIn {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      scale(0.92)
+      translateY(10px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      scale(1)
+      translateY(0);
+
+  }
+
+}
+
+/* ==============================
+   FACEBOOK PERMISSION POPUP
+   ============================== */
+
+.facebook-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  box-sizing: border-box;
+
+  background: rgba(0, 0, 0, 0.75);
+
+}
+
+
+/* ==============================
+   FACEBOOK POPUP BOX
+   ============================== */
+
+.facebook-permission-box {
+
+  width: 100%;
+
+  max-width: 340px;
+
+  padding: 24px 20px 18px;
+
+  box-sizing: border-box;
+
+  background: #1a1d24;
+
+  border: 1px solid #30343d;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 15px 40px rgba(0, 0, 0, 0.55);
+
+  animation: facebookPopupIn 0.25s ease-out;
+
+}
+
+
+/* ==============================
+   FACEBOOK LOGO
+   ============================== */
+
+.facebook-permission-icon {
+
+  width: 48px;
+
+  height: 48px;
+
+  margin: 0 auto 14px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #1877f2;
+
+  color: #ffffff;
+
+  font-size: 28px;
+
+  font-weight: bold;
+
+}
+
+
+/* ==============================
+   TITLE
+   ============================== */
+
+.facebook-permission-title {
+
+  color: #ffffff;
+
+  text-align: center;
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  margin-bottom: 10px;
+
+}
+
+
+/* ==============================
+   DESCRIPTION
+   ============================== */
+
+.facebook-permission-text {
+
+  color: #999999;
+
+  text-align: center;
+
+  font-size: 11px;
+
+  line-height: 1.5;
+
+  margin-bottom: 18px;
+
+}
+
+
+/* ==============================
+   FACEBOOK ACCOUNT
+   ============================== */
+
+.facebook-account {
+
+  width: 100%;
+
+  padding: 12px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  background: #0b0f19;
+
+  border: 1px solid #30343d;
+
+  border-radius: 12px;
+
+  margin-bottom: 20px;
+
+}
+
+
+/* ==============================
+   ACCOUNT ICON
+   ============================== */
+
+.facebook-account-icon {
+
+  width: 34px;
+
+  height: 34px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #1877f2;
+
+  color: #ffffff;
+
+  font-size: 20px;
+
+  font-weight: bold;
+
+}
+
+
+/* ==============================
+   ACCOUNT INFORMATION
+   ============================== */
+
+.facebook-account-info {
+
+  min-width: 0;
+
+}
+
+
+.facebook-account-name {
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  margin-bottom: 3px;
+
+}
+
+
+.facebook-account-email {
+
+  color: #777777;
+
+  font-size: 9px;
+
+}
+
+
+/* ==============================
+   BUTTONS
+   ============================== */
+
+.facebook-permission-buttons {
+
+  width: 100%;
+
+  display: flex;
+
+  gap: 10px;
+
+}
+
+
+.facebook-cancel-button,
+.facebook-continue-button {
+
+  flex: 1;
+
+  height: 40px;
+
+  border-radius: 22px;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+
+}
+
+
+/* ==============================
+   CANCEL
+   ============================== */
+
+.facebook-cancel-button {
+
+  background: transparent;
+
+  color: #aaaaaa;
+
+  border: 1px solid #3a3e47;
+
+}
+
+
+/* ==============================
+   CONTINUE
+   ============================== */
+
+.facebook-continue-button {
+
+  background: #1877f2;
+
+  color: #ffffff;
+
+  border: none;
+
+}
+
+
+/* ==============================
+   BUTTON PRESS
+   ============================== */
+
+.facebook-cancel-button:active,
+.facebook-continue-button:active {
+
+  transform: scale(0.97);
+
+}
+
+
+/* ==============================
+   POPUP ANIMATION
+   ============================== */
+
+@keyframes facebookPopupIn {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      scale(0.92)
+      translateY(10px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      scale(1)
+      translateY(0);
+
+  }
+
+}

@@ -1,0 +1,240 @@
+<ion-content [fullscreen]="true">
+
+  <div class="profile-page">
+
+    <!-- HEADER -->
+
+    <div class="top-header">
+
+      <button
+        type="button"
+        class="back-button"
+        (click)="goToHome()"
+      >
+        ←
+      </button>
+
+      <div class="page-title">
+        Profile
+      </div>
+
+      <div class="header-space"></div>
+
+    </div>
+
+
+    <!-- PROFILE INFORMATION -->
+
+    <div class="profile-content">
+
+      <!-- PROFILE AVATAR -->
+
+      <div class="profile-avatar">
+        J
+      </div>
+
+
+      <!-- NAME -->
+
+      <div class="profile-name">
+        John
+      </div>
+
+
+      <!-- USERNAME -->
+
+      <div class="profile-username">
+        @john
+      </div>
+
+
+      <!-- PROFILE OPTIONS -->
+
+      <div class="profile-options">
+
+
+        <!-- EDIT PROFILE -->
+
+        <button
+          type="button"
+          class="profile-option"
+        >
+
+          <div class="option-icon">
+            <i class="fi fi-rs-user-pen"></i>
+          </div>
+
+          <div class="option-text">
+            Edit Profile
+          </div>
+
+          <div class="option-arrow">
+            →
+          </div>
+
+        </button>
+
+
+        <!-- SAVED PRODUCTS -->
+
+        <button
+          type="button"
+          class="profile-option"
+        >
+
+          <div class="option-icon">
+            <i class="fi fi-rs-heart"></i>
+          </div>
+
+          <div class="option-text">
+            Saved Products
+          </div>
+
+          <div class="option-arrow">
+            →
+          </div>
+
+        </button>
+
+
+        <!-- PRICE ALERTS -->
+
+        <button
+          type="button"
+          class="profile-option"
+        >
+
+          <div class="option-icon">
+            <i class="fi fi-rs-bell"></i>
+          </div>
+
+          <div class="option-text">
+            Price Alerts
+          </div>
+
+          <div class="option-arrow">
+            →
+          </div>
+
+        </button>
+
+
+        <!-- SETTINGS -->
+
+        <button
+          type="button"
+          class="profile-option"
+        >
+
+          <div class="option-icon">
+            <i class="fi fi-rs-settings"></i>
+          </div>
+
+          <div class="option-text">
+            Settings
+          </div>
+
+          <div class="option-arrow">
+            →
+          </div>
+
+        </button>
+
+
+        <!-- LOG OUT -->
+
+        <button
+          type="button"
+          class="profile-option logout"
+        >
+
+          <div class="option-icon">
+            <i class="fi fi-rs-sign-out-alt"></i>
+          </div>
+
+          <div class="option-text">
+            Log Out
+          </div>
+
+          <div class="option-arrow">
+            →
+          </div>
+
+        </button>
+
+
+      </div>
+
+    </div>
+
+
+    <!-- BOTTOM NAVIGATION -->
+
+    <div class="bottom-navigation">
+
+
+      <!-- HOME -->
+
+      <button
+        type="button"
+        (click)="goToHome()"
+      >
+
+        <i class="fi fi-rs-home"></i>
+
+      </button>
+
+
+      <!-- CATEGORIES -->
+
+      <button
+        type="button"
+        (click)="goToCategories()"
+      >
+
+        <i class="fi fi-rs-apps"></i>
+
+      </button>
+
+
+      <!-- SCAN -->
+
+      <button
+        type="button"
+        (click)="goToScan()"
+      >
+
+        <i class="fi fi-rs-barcode-scan"></i>
+
+      </button>
+
+
+      <!-- MESSAGE -->
+
+      <button
+        type="button"
+        (click)="goToMessage()"
+      >
+
+        <i class="fi fi-rs-comment"></i>
+
+      </button>
+
+
+      <!-- PROFILE -->
+
+      <button
+        type="button"
+        class="active"
+      >
+
+        <i class="fi fi-rs-user"></i>
+
+      </button>
+
+
+    </div>
+
+  </div>
+
+</ion-content>

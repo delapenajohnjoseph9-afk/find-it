@@ -1,0 +1,116 @@
+<ion-content [fullscreen]="true">
+
+  <div class="login-page">
+
+    <div class="login-screen">
+
+      <div class="content-container">
+
+        <!-- Find It Logo -->
+        <img
+          src="assets/find-it-logo.png"
+          alt="Find It Logo"
+          class="logo-image"
+        />
+
+
+        <!-- Form Fields -->
+        <form
+          class="login-form"
+          (ngSubmit)="goToHome()"
+        >
+
+          <!-- Username / Email -->
+          <input
+            type="text"
+            class="input-field"
+            placeholder="Username / Email"
+            [(ngModel)]="username"
+            name="username"
+          >
+
+
+          <!-- Password -->
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            class="input-field"
+            placeholder="Password"
+            [(ngModel)]="password"
+            name="password"
+          >
+
+
+          <!-- Show Password -->
+          <div
+            class="small-option"
+            (click)="togglePassword()"
+          >
+
+            <div
+              class="small-box"
+              [class.checked]="showPassword"
+            >
+
+              <span *ngIf="showPassword">
+                ✓
+              </span>
+
+            </div>
+
+            <div class="small-line">
+              Show Password
+            </div>
+
+          </div>
+
+
+          <!-- Validation Message -->
+          <div
+            class="error-message"
+            *ngIf="showError"
+          >
+            Please fill in all fields.
+          </div>
+
+
+          <!-- Forgot Password -->
+          <div class="forgot-wrapper">
+
+            <a class="forgot-link">
+              Forgot Password?
+            </a>
+
+          </div>
+
+
+          <!-- Login Button -->
+          <div class="button-row">
+
+            <button
+              type="submit"
+              class="login-button"
+              [disabled]="isLoading"
+            >
+
+              <span *ngIf="!isLoading">
+                Login
+              </span>
+
+              <span
+                *ngIf="isLoading"
+                class="loader"
+              ></span>
+
+            </button>
+
+          </div>
+
+        </form>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</ion-content>

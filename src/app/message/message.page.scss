@@ -1,0 +1,579 @@
+/* =====================================================
+   IONIC CONTENT
+   ===================================================== */
+
+ion-content {
+  --background: #000000;
+
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+}
+
+
+/* =====================================================
+   MESSAGE PAGE
+   ===================================================== */
+
+.message-page {
+  width: 100%;
+  max-width: 420px;
+
+  height: 100dvh;
+
+  margin: 0 auto;
+
+  background: #0b0f19;
+
+  color: #ffffff;
+
+  box-sizing: border-box;
+
+  font-family: Arial, sans-serif;
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  /* Prevents the header from going behind the status bar */
+  padding-top: env(safe-area-inset-top);
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.top-header {
+  width: 100%;
+
+  height: 55px;
+
+  padding: 0 15px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  flex-shrink: 0;
+}
+
+
+.back-button {
+  width: 35px;
+  height: 35px;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  font-size: 24px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+
+.page-title {
+  font-size: 17px;
+
+  font-weight: bold;
+
+  color: #ffffff;
+
+  text-align: center;
+}
+
+
+.header-space {
+  width: 35px;
+  height: 35px;
+}
+
+
+/* =====================================================
+   SEARCH BAR
+   ===================================================== */
+
+.search-box {
+  width: 94%;
+
+  height: 38px;
+
+  margin: 5px auto 18px;
+
+  background: #1f222a;
+
+  border-radius: 7px;
+
+  padding: 0 11px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  flex-shrink: 0;
+}
+
+
+.search-icon {
+  font-size: 16px;
+
+  color: #aaaaaa;
+
+  margin-right: 7px;
+
+  display: flex;
+
+  align-items: center;
+}
+
+
+.search-box input {
+  width: 100%;
+
+  height: 100%;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  font-size: 11px;
+}
+
+
+.search-box input::placeholder {
+  color: #999999;
+}
+
+
+/* =====================================================
+   MESSAGE LIST
+   ===================================================== */
+
+.message-list {
+  width: 94%;
+
+  margin: 0 auto;
+
+  flex: 1;
+
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding-bottom: 15px;
+
+  box-sizing: border-box;
+}
+
+
+/* =====================================================
+   MESSAGE ITEM
+   ===================================================== */
+
+.message-item {
+  width: 100%;
+
+  min-height: 72px;
+
+  padding: 10px 8px;
+
+  margin-bottom: 8px;
+
+  border: 1px solid #30343d;
+
+  border-radius: 10px;
+
+  background: #1a1d24;
+
+  color: #ffffff;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  align-items: center;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+/* =====================================================
+   AVATAR
+   ===================================================== */
+
+.avatar {
+  width: 45px;
+
+  height: 45px;
+
+  min-width: 45px;
+
+  border-radius: 50%;
+
+  background: #11141a;
+
+  border: 1px solid #30343d;
+
+  color: #0c8ce9;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-right: 12px;
+}
+
+
+/* =====================================================
+   MESSAGE INFORMATION
+   ===================================================== */
+
+.message-info {
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+.message-top {
+  width: 100%;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  margin-bottom: 5px;
+}
+
+
+.message-name {
+  color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+.message-time {
+  color: #888888;
+
+  font-size: 9px;
+
+  margin-left: 8px;
+
+  white-space: nowrap;
+}
+
+
+.message-preview {
+  color: #999999;
+
+  font-size: 10px;
+
+  line-height: 1.4;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+/* =====================================================
+   UNREAD INDICATOR
+   ===================================================== */
+
+.unread-dot {
+  width: 7px;
+
+  height: 7px;
+
+  min-width: 7px;
+
+  background: #0c8ce9;
+
+  border-radius: 50%;
+
+  margin-left: 8px;
+}
+
+
+/* =====================================================
+   BOTTOM NAVIGATION
+   ===================================================== */
+
+.bottom-navigation {
+  width: 100%;
+
+  height: 78px;
+
+  min-height: 78px;
+
+  background: #1a1d24;
+
+  border-radius: 16px 16px 0 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-around;
+
+  padding: 0 25px;
+
+  box-sizing: border-box;
+
+  flex-shrink: 0;
+
+  z-index: 100;
+}
+
+
+.bottom-navigation button {
+  width: 42px;
+
+  height: 42px;
+
+  padding: 0;
+
+  margin: 0;
+
+  border: none;
+
+  background: transparent;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+
+.bottom-navigation i {
+  font-size: 22px;
+
+  color: #ffffff;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+.bottom-navigation .active i {
+  color: #0c8ce9;
+}
+
+
+/* =====================================================
+   TABLET / DESKTOP
+   ===================================================== */
+
+@media (min-width: 421px) {
+
+  .message-page {
+    width: 420px;
+  }
+
+}
+
+
+/* =====================================================
+   SMALL PHONE
+   ===================================================== */
+
+@media (max-width: 380px) {
+
+  .top-header {
+    height: 50px;
+
+    padding: 0 12px;
+  }
+
+
+  .page-title {
+    font-size: 15px;
+  }
+
+
+  .search-box {
+    height: 34px;
+
+    margin-bottom: 14px;
+  }
+
+
+  .message-item {
+    min-height: 66px;
+
+    padding: 8px 7px;
+  }
+
+
+  .avatar {
+    width: 41px;
+
+    height: 41px;
+
+    min-width: 41px;
+
+    font-size: 14px;
+
+    margin-right: 10px;
+  }
+
+
+  .message-name {
+    font-size: 11px;
+  }
+
+
+  .message-time {
+    font-size: 8px;
+  }
+
+
+  .message-preview {
+    font-size: 9px;
+  }
+
+
+  .bottom-navigation {
+    height: 68px;
+
+    min-height: 68px;
+
+    padding: 0 18px;
+
+    border-radius: 14px 14px 0 0;
+  }
+
+
+  .bottom-navigation button {
+    width: 38px;
+
+    height: 38px;
+  }
+
+
+  .bottom-navigation i {
+    font-size: 20px;
+  }
+
+}
+
+
+/* =====================================================
+   VERY SMALL PHONE
+   ===================================================== */
+
+@media (max-width: 320px) {
+
+  .top-header {
+    height: 45px;
+  }
+
+
+  .search-box {
+    height: 31px;
+  }
+
+
+  .message-item {
+    min-height: 60px;
+
+    margin-bottom: 6px;
+  }
+
+
+  .avatar {
+    width: 37px;
+
+    height: 37px;
+
+    min-width: 37px;
+
+    font-size: 13px;
+  }
+
+
+  .message-name {
+    font-size: 10px;
+  }
+
+
+  .message-preview {
+    font-size: 8px;
+  }
+
+
+  .bottom-navigation {
+    height: 60px;
+
+    min-height: 60px;
+
+    padding: 0 12px;
+
+    border-radius: 12px 12px 0 0;
+  }
+
+
+  .bottom-navigation button {
+    width: 34px;
+
+    height: 34px;
+  }
+
+
+  .bottom-navigation i {
+    font-size: 18px;
+  }
+
+}

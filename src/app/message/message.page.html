@@ -1,227 +1,109 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [scrollY]="false">
 
   <div class="message-page">
 
-    <!-- HEADER -->
-    <div class="top-header">
+    <!-- TOP SECTION (stays fixed) -->
+    <div class="top-section">
 
-      <button
-        type="button"
-        class="back-button"
-        (click)="goToHome()">
-        ←
-      </button>
+      <header class="app-header">
 
-      <div class="page-title">
-        Messages
+        <button
+          type="button"
+          class="back-button"
+          aria-label="Back"
+          (click)="goToHome()">
+
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+
+        </button>
+
+        <div>
+          <h1 class="page-title">Messages</h1>
+          <div class="page-subtitle">
+            {{ unreadCount > 0 ? unreadCount + ' unread' : 'All caught up' }}
+          </div>
+        </div>
+
+      </header>
+
+
+      <div class="search-box">
+        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+        </svg>
+        <input
+          type="text"
+          placeholder="Search messages"
+          aria-label="Search messages"
+          [value]="searchTerm"
+          (input)="onSearch($event)">
       </div>
 
-      <div class="header-space"></div>
-
     </div>
 
 
-    <!-- SEARCH BAR -->
-    <div class="search-box">
+    <!-- SCROLLING MESSAGE LIST -->
+    <div class="content-scroll">
 
-      <span class="search-icon">⌕</span>
-
-      <input
-        type="text"
-        placeholder="Search messages..."
-      />
-
-    </div>
-
-
-    <!-- MESSAGE LIST -->
-    <div class="message-list">
-
-      <!-- MESSAGE 1 -->
       <button
         type="button"
-        class="message-item">
+        class="message-item"
+        [class.unread]="message.unread"
+        *ngFor="let message of filteredMessages"
+        (click)="openMessage(message)">
 
-        <div class="avatar">
-          J
-        </div>
+        <span class="avatar" aria-hidden="true">{{ message.name.charAt(0) }}</span>
 
-        <div class="message-info">
+        <span class="message-info">
 
-          <div class="message-top">
+          <span class="message-top">
+            <span class="message-name">{{ message.name }}</span>
+            <span class="message-time">{{ message.time }}</span>
+          </span>
 
-            <span class="message-name">
-              John
-            </span>
+          <span class="message-preview">{{ message.preview }}</span>
 
-            <span class="message-time">
-              10:30 AM
-            </span>
+        </span>
 
-          </div>
-
-          <div class="message-preview">
-            Is the product still available?
-          </div>
-
-        </div>
-
-        <div class="unread-dot"></div>
+        <span class="unread-dot" *ngIf="message.unread" aria-label="Unread"></span>
 
       </button>
 
 
-      <!-- MESSAGE 2 -->
-      <button
-        type="button"
-        class="message-item">
-
-        <div class="avatar">
-          M
-        </div>
-
-        <div class="message-info">
-
-          <div class="message-top">
-
-            <span class="message-name">
-              Mark
-            </span>
-
-            <span class="message-time">
-              9:15 AM
-            </span>
-
-          </div>
-
-          <div class="message-preview">
-            Thank you for the information.
-          </div>
-
-        </div>
-
-      </button>
-
-
-      <!-- MESSAGE 3 -->
-      <button
-        type="button"
-        class="message-item">
-
-        <div class="avatar">
-          A
-        </div>
-
-        <div class="message-info">
-
-          <div class="message-top">
-
-            <span class="message-name">
-              Anna
-            </span>
-
-            <span class="message-time">
-              Yesterday
-            </span>
-
-          </div>
-
-          <div class="message-preview">
-            I found a cheaper price for it.
-          </div>
-
-        </div>
-
-      </button>
-
-
-      <!-- MESSAGE 4 -->
-      <button
-        type="button"
-        class="message-item">
-
-        <div class="avatar">
-          R
-        </div>
-
-        <div class="message-info">
-
-          <div class="message-top">
-
-            <span class="message-name">
-              Ryan
-            </span>
-
-            <span class="message-time">
-              Yesterday
-            </span>
-
-          </div>
-
-          <div class="message-preview">
-            Can you send me the product link?
-          </div>
-
-        </div>
-
-      </button>
+      <div class="no-results" *ngIf="filteredMessages.length === 0">
+        <div class="no-results-title">No messages found</div>
+        <div class="no-results-text">Try searching for another name or word.</div>
+      </div>
 
     </div>
 
 
     <!-- BOTTOM NAVIGATION -->
-    <div class="bottom-navigation">
+    <nav class="bottom-navigation" aria-label="Main">
 
-      <!-- HOME -->
-      <button
-        type="button"
-        (click)="goToHome()">
-
+      <button type="button" (click)="goToHome()">
         <i class="fi fi-rs-home"></i>
-
+        <span>Home</span>
       </button>
 
-
-      <!-- CATEGORIES -->
-      <button
-        type="button"
-        (click)="goToCategories()">
-
+      <button type="button" (click)="goToCategories()">
         <i class="fi fi-rs-apps"></i>
-
+        <span>Categories</span>
       </button>
 
-
-      <!-- SCAN -->
-      <button
-        type="button"
-        (click)="goToScan()">
-
-        <i class="fi fi-rs-barcode-scan"></i>
-
-      </button>
-
-
-      <!-- MESSAGE -->
-      <button
-        type="button"
-        class="active">
-
+      <button type="button" class="active" aria-current="page">
         <i class="fi fi-rs-comment"></i>
-
+        <span>Messages</span>
       </button>
 
+      <button type="button" (click)="goToProfile()">
+        <i class="fi fi-rs-user"></i>
+        <span>Profile</span>
+      </button>
 
-      <!-- PROFILE -->
-      <button
-  type="button"
-  (click)="goToProfile()">
-
-  <i class="fi fi-rs-user"></i>
-
-</button>
-
-    </div>
+    </nav>
 
   </div>
 

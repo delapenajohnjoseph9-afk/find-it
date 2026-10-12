@@ -96,4 +96,20 @@ export class CategoriesPage implements OnInit {
 
   }
 
+
+  // ==============================
+  // SELECT CATEGORY
+  // ==============================
+
+  selectCategory(category: string) {
+
+    console.log('Selected category:', category);
+
+    this.router.navigate([
+      '/products',
+      category.toLowerCase()
+    ]);
+
+  }
+
 }

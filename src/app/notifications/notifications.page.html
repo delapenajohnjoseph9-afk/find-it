@@ -1,0 +1,174 @@
+<ion-content [fullscreen]="true" [scrollY]="false">
+
+  <div class="notifications-page">
+
+    <!-- TOP SECTION (stays fixed) -->
+    <div class="top-section">
+
+      <header class="app-header">
+
+        <button
+          type="button"
+          class="back-button"
+          aria-label="Back"
+          (click)="goToHome()">
+
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+
+        </button>
+
+        <div class="header-text">
+          <h1 class="page-title">Notifications</h1>
+          <div class="page-subtitle">
+            {{ unreadCount > 0 ? unreadCount + ' unread' : 'Stay updated with your tracked products' }}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          class="back-button add-alert-button"
+          aria-label="Set price alert"
+          (click)="openSetPrice()">
+
+          <i class="fi fi-rs-plus"></i>
+
+        </button>
+
+      </header>
+
+
+      <!-- FILTERS -->
+      <div class="chips" role="tablist" aria-label="Filter notifications">
+
+        <button
+          type="button"
+          class="chip"
+          role="tab"
+          *ngFor="let filter of filters"
+          [class.active]="selectedFilter === filter.id"
+          [attr.aria-selected]="selectedFilter === filter.id"
+          (click)="setFilter(filter.id)">
+          {{ filter.label }}
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- SCROLLING NOTIFICATION LIST -->
+    <div class="content-scroll">
+
+      <button
+        type="button"
+        class="notification-card"
+        [class.unread]="notification.unread"
+        *ngFor="let notification of filteredNotifications">
+
+        <span class="notification-card-icon" aria-hidden="true">
+          <i [class]="notification.icon"></i>
+        </span>
+
+        <span class="notification-info">
+          <span class="notification-title">{{ notification.title }}</span>
+          <span class="notification-message">{{ notification.message }}</span>
+          <span class="notification-time">{{ notification.time }}</span>
+        </span>
+
+        <span
+          class="unread-dot"
+          *ngIf="notification.unread"
+          aria-label="Unread"></span>
+
+      </button>
+
+
+      <div class="no-results" *ngIf="filteredNotifications.length === 0">
+        <div class="no-results-title">No notifications</div>
+        <div class="no-results-text">You're all caught up.</div>
+      </div>
+
+    </div>
+
+
+    <!-- SET PRICE ALERT SHEET -->
+    <div class="sheet-backdrop" *ngIf="showSetPrice" (click)="closeSetPrice()"></div>
+
+    <div class="sheet" *ngIf="showSetPrice" role="dialog" aria-label="Set price alert">
+
+      <div class="sheet-header">
+        <h2 class="sheet-title">Set Price Alert</h2>
+        <button type="button" class="sheet-close" aria-label="Close" (click)="closeSetPrice()">✕</button>
+      </div>
+
+      <div class="section-label">SELECT PRODUCT</div>
+
+      <div class="product-selector">
+
+        <button
+          type="button"
+          class="product-option"
+          *ngFor="let product of products"
+          [class.selected]="selectedProduct.name === product.name"
+          (click)="selectProduct(product)">
+
+          <div class="option-image">
+            <img [src]="product.image" [alt]="product.name">
+          </div>
+
+          <div class="option-name">{{ product.name }}</div>
+          <div class="option-price">₱{{ product.price | number }}</div>
+
+          <div class="check" *ngIf="selectedProduct.name === product.name">✓</div>
+
+        </button>
+
+      </div>
+
+      <div class="current-row">
+        Current price
+        <strong>₱{{ selectedProduct.price | number }}</strong>
+      </div>
+
+      <div class="section-label">TARGET PRICE</div>
+
+      <div class="price-input-wrapper">
+        <span class="currency">₱</span>
+        <input
+          type="number"
+          inputmode="numeric"
+          [(ngModel)]="targetPrice"
+          (ngModelChange)="priceError = ''"
+          placeholder="Enter target price">
+      </div>
+
+      <div class="price-error" *ngIf="priceError">{{ priceError }}</div>
+
+      <div class="alert-option">
+        <div class="alert-info">
+          <div class="alert-title">Price Drop Notification</div>
+          <div class="alert-description">Notify me when the price drops.</div>
+        </div>
+
+        <button
+          type="button"
+          class="toggle"
+          role="switch"
+          [attr.aria-checked]="alertEnabled"
+          [class.on]="alertEnabled"
+          (click)="toggleAlert()">
+          <span></span>
+        </button>
+      </div>
+
+      <button type="button" class="set-alert-button" (click)="setPriceAlert()">
+        Set Price Alert
+      </button>
+
+    </div>
+
+  </div>
+
+</ion-content>

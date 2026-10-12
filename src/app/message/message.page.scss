@@ -1,579 +1,331 @@
-/* =====================================================
-   IONIC CONTENT
-   ===================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap');
+
+:host {
+  --bg: #070d18;
+  --surface: #0f1a2c;
+  --nav: #0b1424;
+  --border: #1c2b44;
+  --text: #eaf1fb;
+  --muted: #8fa1bd;
+  --accent: #2ea0ff;
+  --warm: #ffb04a;
+  --placeholder: #060b14;
+  --font: 'Manrope', Arial, sans-serif;
+}
 
 ion-content {
-  --background: #000000;
-
+  --background: #070d18;
   --padding-top: 0;
   --padding-bottom: 0;
   --padding-start: 0;
   --padding-end: 0;
+  background: #070d18;
 }
 
-
-/* =====================================================
-   MESSAGE PAGE
-   ===================================================== */
-
+/* PAGE: fixed top, scrolling list, fixed nav */
 .message-page {
-  width: 100%;
-  max-width: 420px;
-
-  height: 100dvh;
-
-  margin: 0 auto;
-
-  background: #0b0f19;
-
-  color: #ffffff;
-
-  box-sizing: border-box;
-
-  font-family: Arial, sans-serif;
-
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
-
   flex-direction: column;
-
+  max-width: 420px;
+  margin: 0 auto;
   overflow: hidden;
-
-  /* Prevents the header from going behind the status bar */
-  padding-top: env(safe-area-inset-top);
+  color: var(--text);
+  font-family: var(--font);
+  background: var(--bg);
 }
 
-
-/* =====================================================
-   HEADER
-   ===================================================== */
-
-.top-header {
-  width: 100%;
-
-  height: 55px;
-
-  padding: 0 15px;
-
-  box-sizing: border-box;
-
+/* TOP SECTION */
+.top-section {
   display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
+  flex-direction: column;
   flex-shrink: 0;
+  gap: 16px;
+  padding: calc(20px + env(safe-area-inset-top, 0px)) 20px 0;
+
+  > * {
+    flex-shrink: 0;
+  }
 }
 
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
 
 .back-button {
-  width: 35px;
-  height: 35px;
-
-  padding: 0;
-
-  border: none;
-
-  background: transparent;
-
-  color: #ffffff;
-
-  font-size: 24px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    transform: scale(0.94);
+  }
 }
 
-
 .page-title {
-  font-size: 17px;
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
 
-  font-weight: bold;
+.page-subtitle {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
 
-  color: #ffffff;
+/* SEARCH */
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 48px;
+  padding: 0 14px;
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--muted);
+  transition: border-color 0.2s ease;
 
+  &:focus-within {
+    border-color: var(--accent);
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 15px;
+
+    &::placeholder {
+      color: var(--muted);
+    }
+  }
+}
+
+/* SCROLLING LIST */
+.content-scroll {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  gap: 12px;
+  overflow-y: auto;
+  padding: 16px 20px calc(96px + env(safe-area-inset-bottom, 0px));
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  > * {
+    flex-shrink: 0;
+  }
+}
+
+/* MESSAGE ROW */
+.message-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+  color: inherit;
+  font-family: var(--font);
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    border-color: rgba(46, 160, 255, 0.5);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  /* unread messages stand out: brighter preview and time */
+  &.unread {
+    .message-preview {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .message-time {
+      color: var(--accent);
+      font-weight: 700;
+    }
+  }
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(46, 160, 255, 0.14);
+  color: var(--accent);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.message-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 0;
+  gap: 4px;
+}
+
+.message-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.message-name {
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 800;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.message-time {
+  flex-shrink: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.message-preview {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.unread-dot {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--warm);
+}
+
+/* NO RESULTS */
+.no-results {
+  padding: 40px 20px;
   text-align: center;
 }
 
-
-.header-space {
-  width: 35px;
-  height: 35px;
+.no-results-title {
+  margin-bottom: 6px;
+  font-size: 15px;
+  font-weight: 800;
 }
 
-
-/* =====================================================
-   SEARCH BAR
-   ===================================================== */
-
-.search-box {
-  width: 94%;
-
-  height: 38px;
-
-  margin: 5px auto 18px;
-
-  background: #1f222a;
-
-  border-radius: 7px;
-
-  padding: 0 11px;
-
-  box-sizing: border-box;
-
-  display: flex;
-
-  align-items: center;
-
-  flex-shrink: 0;
-}
-
-
-.search-icon {
-  font-size: 16px;
-
-  color: #aaaaaa;
-
-  margin-right: 7px;
-
-  display: flex;
-
-  align-items: center;
-}
-
-
-.search-box input {
-  width: 100%;
-
-  height: 100%;
-
-  border: none;
-
-  outline: none;
-
-  background: transparent;
-
-  color: #ffffff;
-
-  font-size: 11px;
-}
-
-
-.search-box input::placeholder {
-  color: #999999;
-}
-
-
-/* =====================================================
-   MESSAGE LIST
-   ===================================================== */
-
-.message-list {
-  width: 94%;
-
-  margin: 0 auto;
-
-  flex: 1;
-
-  min-height: 0;
-
-  overflow-y: auto;
-
-  padding-bottom: 15px;
-
-  box-sizing: border-box;
-}
-
-
-/* =====================================================
-   MESSAGE ITEM
-   ===================================================== */
-
-.message-item {
-  width: 100%;
-
-  min-height: 72px;
-
-  padding: 10px 8px;
-
-  margin-bottom: 8px;
-
-  border: 1px solid #30343d;
-
-  border-radius: 10px;
-
-  background: #1a1d24;
-
-  color: #ffffff;
-
-  box-sizing: border-box;
-
-  display: flex;
-
-  align-items: center;
-
-  text-align: left;
-
-  cursor: pointer;
-}
-
-
-/* =====================================================
-   AVATAR
-   ===================================================== */
-
-.avatar {
-  width: 45px;
-
-  height: 45px;
-
-  min-width: 45px;
-
-  border-radius: 50%;
-
-  background: #11141a;
-
-  border: 1px solid #30343d;
-
-  color: #0c8ce9;
-
-  font-size: 16px;
-
-  font-weight: bold;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  margin-right: 12px;
-}
-
-
-/* =====================================================
-   MESSAGE INFORMATION
-   ===================================================== */
-
-.message-info {
-  flex: 1;
-
-  min-width: 0;
-}
-
-
-.message-top {
-  width: 100%;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
-  margin-bottom: 5px;
-}
-
-
-.message-name {
-  color: #ffffff;
-
+.no-results-text {
+  color: var(--muted);
   font-size: 12px;
-
-  font-weight: bold;
-
-  white-space: nowrap;
-
-  overflow: hidden;
-
-  text-overflow: ellipsis;
 }
 
-
-.message-time {
-  color: #888888;
-
-  font-size: 9px;
-
-  margin-left: 8px;
-
-  white-space: nowrap;
-}
-
-
-.message-preview {
-  color: #999999;
-
-  font-size: 10px;
-
-  line-height: 1.4;
-
-  white-space: nowrap;
-
-  overflow: hidden;
-
-  text-overflow: ellipsis;
-}
-
-
-/* =====================================================
-   UNREAD INDICATOR
-   ===================================================== */
-
-.unread-dot {
-  width: 7px;
-
-  height: 7px;
-
-  min-width: 7px;
-
-  background: #0c8ce9;
-
-  border-radius: 50%;
-
-  margin-left: 8px;
-}
-
-
-/* =====================================================
-   BOTTOM NAVIGATION
-   ===================================================== */
-
+/* BOTTOM NAVIGATION */
 .bottom-navigation {
-  width: 100%;
-
-  height: 78px;
-
-  min-height: 78px;
-
-  background: #1a1d24;
-
-  border-radius: 16px 16px 0 0;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-around;
-
-  padding: 0 25px;
-
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: calc(76px + env(safe-area-inset-bottom, 0px));
+  padding: 0 8px env(safe-area-inset-bottom, 0px);
   box-sizing: border-box;
+  border-top: 1px solid var(--border);
+  background: var(--nav);
 
-  flex-shrink: 0;
+  button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-family: var(--font);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 
-  z-index: 100;
-}
+    i {
+      display: flex;
+      font-size: 22px;
+    }
 
+    span {
+      font-size: 11px;
+      font-weight: 600;
+    }
 
-.bottom-navigation button {
-  width: 42px;
+    &:active {
+      transform: scale(0.94);
+    }
 
-  height: 42px;
+    &.active {
+      color: var(--accent);
 
-  padding: 0;
-
-  margin: 0;
-
-  border: none;
-
-  background: transparent;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  cursor: pointer;
-}
-
-
-.bottom-navigation i {
-  font-size: 22px;
-
-  color: #ffffff;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-}
-
-
-.bottom-navigation .active i {
-  color: #0c8ce9;
-}
-
-
-/* =====================================================
-   TABLET / DESKTOP
-   ===================================================== */
-
-@media (min-width: 421px) {
-
-  .message-page {
-    width: 420px;
+      span {
+        font-weight: 700;
+      }
+    }
   }
-
 }
-
-
-/* =====================================================
-   SMALL PHONE
-   ===================================================== */
 
 @media (max-width: 380px) {
-
-  .top-header {
-    height: 50px;
-
-    padding: 0 12px;
+  .top-section,
+  .content-scroll {
+    padding-left: 14px;
+    padding-right: 14px;
   }
-
-
-  .page-title {
-    font-size: 15px;
-  }
-
-
-  .search-box {
-    height: 34px;
-
-    margin-bottom: 14px;
-  }
-
-
-  .message-item {
-    min-height: 66px;
-
-    padding: 8px 7px;
-  }
-
-
-  .avatar {
-    width: 41px;
-
-    height: 41px;
-
-    min-width: 41px;
-
-    font-size: 14px;
-
-    margin-right: 10px;
-  }
-
-
-  .message-name {
-    font-size: 11px;
-  }
-
-
-  .message-time {
-    font-size: 8px;
-  }
-
-
-  .message-preview {
-    font-size: 9px;
-  }
-
-
-  .bottom-navigation {
-    height: 68px;
-
-    min-height: 68px;
-
-    padding: 0 18px;
-
-    border-radius: 14px 14px 0 0;
-  }
-
-
-  .bottom-navigation button {
-    width: 38px;
-
-    height: 38px;
-  }
-
-
-  .bottom-navigation i {
-    font-size: 20px;
-  }
-
 }
 
-
-/* =====================================================
-   VERY SMALL PHONE
-   ===================================================== */
-
-@media (max-width: 320px) {
-
-  .top-header {
-    height: 45px;
+@media (min-width: 421px) {
+  .message-page {
+    border-left: 1px solid rgba(255, 255, 255, 0.04);
+    border-right: 1px solid rgba(255, 255, 255, 0.04);
   }
-
-
-  .search-box {
-    height: 31px;
-  }
-
-
-  .message-item {
-    min-height: 60px;
-
-    margin-bottom: 6px;
-  }
-
-
-  .avatar {
-    width: 37px;
-
-    height: 37px;
-
-    min-width: 37px;
-
-    font-size: 13px;
-  }
-
-
-  .message-name {
-    font-size: 10px;
-  }
-
-
-  .message-preview {
-    font-size: 8px;
-  }
-
-
-  .bottom-navigation {
-    height: 60px;
-
-    min-height: 60px;
-
-    padding: 0 12px;
-
-    border-radius: 12px 12px 0 0;
-  }
-
-
-  .bottom-navigation button {
-    width: 34px;
-
-    height: 34px;
-  }
-
-
-  .bottom-navigation i {
-    font-size: 18px;
-  }
-
 }

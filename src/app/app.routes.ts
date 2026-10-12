@@ -51,6 +51,28 @@ export const routes: Routes = [
   },
 
   {
+    path: 'products/:category',
+    loadComponent: () =>
+      import('./products/products.page').then(m => m.ProductsPage)
+  },
+
+  {
+    path: 'notifications',
+    loadComponent: () =>
+      import('./notifications/notifications.page').then(
+        m => m.NotificationsPage
+      )
+  },
+
+  {
+    path: 'set-price',
+    loadComponent: () =>
+      import('./set-price/set-price.page').then(
+        m => m.SetPricePage
+      )
+  },
+
+  {
     path: '',
     redirectTo: 'splash',
     pathMatch: 'full'

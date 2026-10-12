@@ -1,0 +1,202 @@
+<ion-content [fullscreen]="true">
+
+  <div class="set-price-page">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <div class="top-header">
+
+      <button
+        type="button"
+        class="back-button"
+        (click)="goBack()">
+
+        ←
+
+      </button>
+
+      <div class="page-title">
+        Set Price Alert
+      </div>
+
+      <div class="header-space"></div>
+
+    </div>
+
+
+    <!-- =========================
+         PRODUCT
+    ========================== -->
+
+    <div class="section-label">
+      PRODUCT
+    </div>
+
+
+    <div class="product-card">
+
+      <div class="product-image">
+
+        <img
+          [src]="selectedProductData.image"
+          [alt]="selectedProductData.name"
+        >
+
+      </div>
+
+      <div class="product-info">
+
+        <div class="product-name">
+          {{ selectedProduct }}
+        </div>
+
+        <div class="current-label">
+          Current price
+        </div>
+
+        <div class="current-price">
+          ₱{{ currentPrice | number }}
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         PRODUCT SELECTOR
+    ========================== -->
+
+    <div class="section-label">
+      SELECT PRODUCT
+    </div>
+
+
+    <div class="product-selector">
+
+      <button
+        type="button"
+        class="product-option"
+        *ngFor="let product of products"
+        [class.selected]="selectedProduct === product.name"
+        (click)="selectProduct(product)">
+
+        <div class="option-image">
+
+          <img
+            [src]="product.image"
+            [alt]="product.name"
+          >
+
+        </div>
+
+        <div class="option-info">
+
+          <div class="option-name">
+            {{ product.name }}
+          </div>
+
+          <div class="option-price">
+            ₱{{ product.price | number }}
+          </div>
+
+        </div>
+
+        <div
+          class="check"
+          *ngIf="selectedProduct === product.name">
+
+          ✓
+
+        </div>
+
+      </button>
+
+    </div>
+
+
+    <!-- =========================
+         TARGET PRICE
+    ========================== -->
+
+    <div class="section-label target-label">
+      TARGET PRICE
+    </div>
+
+
+    <div class="price-input-wrapper">
+
+      <span class="currency">
+        ₱
+      </span>
+
+      <input
+        type="number"
+        [(ngModel)]="targetPrice"
+        placeholder="Enter target price"
+      >
+
+    </div>
+
+
+    <div class="price-hint">
+      We'll notify you when the price reaches your target.
+    </div>
+
+
+    <!-- =========================
+         NOTIFICATION TOGGLE
+    ========================== -->
+
+    <div class="alert-option">
+
+      <div class="alert-icon">
+        <i class="fi fi-rs-bell"></i>
+      </div>
+
+      <div class="alert-info">
+
+        <div class="alert-title">
+          Price Drop Notification
+        </div>
+
+        <div class="alert-description">
+          Notify me when the price drops.
+        </div>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="toggle"
+        [class.on]="alertEnabled"
+        (click)="toggleAlert()">
+
+        <span></span>
+
+      </button>
+
+    </div>
+
+
+    <!-- =========================
+         SET ALERT BUTTON
+    ========================== -->
+
+    <button
+      type="button"
+      class="set-alert-button"
+      (click)="setPriceAlert()">
+
+      <i class="fi fi-rs-bell"></i>
+
+      Set Price Alert
+
+    </button>
+
+  </div>
+
+</ion-content>

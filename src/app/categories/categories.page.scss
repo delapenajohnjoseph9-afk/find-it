@@ -1,519 +1,248 @@
-/* =====================================================
-   IONIC CONTENT
-   ===================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap');
+
+:host {
+  --bg: #070d18;
+  --surface: #0f1a2c;
+  --nav: #0b1424;
+  --border: #1c2b44;
+  --text: #eaf1fb;
+  --muted: #8fa1bd;
+  --accent: #2ea0ff;
+  --tile: rgba(46, 160, 255, 0.14);
+  --font: 'Manrope', Arial, sans-serif;
+}
 
 ion-content {
-  --background: #000000;
-
+  --background: #070d18;
   --padding-top: 0;
   --padding-bottom: 0;
   --padding-start: 0;
   --padding-end: 0;
+  background: #070d18;
 }
 
-
-/* =====================================================
-   CATEGORIES PAGE
-   ===================================================== */
-
+/* PAGE: fixed top, scrolling grid, fixed nav */
 .categories-page {
-  width: 100%;
-  max-width: 420px;
-
-  height: 100dvh;
-
-  margin: 0 auto;
-
-  background: #0b0f19;
-
-  color: #ffffff;
-
-  box-sizing: border-box;
-
-  font-family: Arial, sans-serif;
-
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
-
   flex-direction: column;
-
-  /*
-   * Keeps the page content below the phone
-   * status bar when fullscreen is enabled.
-   */
-  padding-top: env(safe-area-inset-top);
-
+  max-width: 420px;
+  margin: 0 auto;
   overflow: hidden;
+  color: var(--text);
+  font-family: var(--font);
+  background: var(--bg);
 }
 
-
-/* =====================================================
-   HEADER
-   ===================================================== */
-
-.top-header {
-  width: 100%;
-
-  height: 55px;
-
-  padding: 0 15px;
-
-  box-sizing: border-box;
-
+/* TOP SECTION */
+.top-section {
   display: flex;
-
-  align-items: center;
-
-  justify-content: space-between;
-
+  flex-direction: column;
   flex-shrink: 0;
+  gap: 16px;
+  padding: calc(20px + env(safe-area-inset-top, 0px)) 20px 0;
 }
 
+.app-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
 
 .back-button {
-  width: 35px;
-  height: 35px;
-
-  padding: 0;
-
-  border: none;
-
-  background: transparent;
-
-  color: #ffffff;
-
-  font-size: 24px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
   cursor: pointer;
-}
+  -webkit-tap-highlight-color: transparent;
 
+  &:active {
+    transform: scale(0.94);
+  }
+}
 
 .page-title {
-  font-size: 17px;
-
-  font-weight: bold;
-
-  color: #ffffff;
+  margin: 0;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
 }
 
-
-.header-space {
-  width: 35px;
-  height: 35px;
-}
-
-
-/* =====================================================
-   SEARCH
-   ===================================================== */
-
-.search-box {
-  width: 94%;
-
-  height: 38px;
-
-  margin: 5px auto 18px;
-
-  background: #1f222a;
-
-  border-radius: 7px;
-
-  padding: 0 11px;
-
-  box-sizing: border-box;
-
-  display: flex;
-
-  align-items: center;
-
-  flex-shrink: 0;
-}
-
-
-.search-icon {
-  font-size: 16px;
-
-  color: #aaaaaa;
-
-  margin-right: 7px;
-}
-
-
-.search-box input {
-  width: 100%;
-
-  height: 100%;
-
-  border: none;
-
-  outline: none;
-
-  background: transparent;
-
-  color: #ffffff;
-
-  font-size: 11px;
-}
-
-
-.search-box input::placeholder {
-  color: #999999;
-}
-
-
-/* =====================================================
-   SECTION TITLE
-   ===================================================== */
-
-.section-title {
-  width: 94%;
-
-  margin: 0 auto 12px;
-
-  color: #ffffff;
-
+.page-subtitle {
+  color: var(--muted);
   font-size: 13px;
-
-  font-weight: bold;
-
-  letter-spacing: 0.5px;
-
-  flex-shrink: 0;
+  font-weight: 600;
 }
 
+/* SCROLLING GRID */
+.content-scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 16px 20px calc(96px + env(safe-area-inset-bottom, 0px));
+  scrollbar-width: none;
 
-/* =====================================================
-   CATEGORY GRID
-   ===================================================== */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
 
 .category-grid {
-  width: 94%;
-
-  margin: 0 auto;
-
   display: grid;
-
-  grid-template-columns: 1fr 1fr;
-
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
-
-  flex: 1;
-
-  min-height: 0;
-
-  overflow-y: auto;
-
-  padding-bottom: 20px;
-
-  box-sizing: border-box;
 }
-
-
-/* =====================================================
-   CATEGORY CARD
-   ===================================================== */
 
 .category-card {
-  height: 125px;
-
-  background: #1a1d24;
-
-  border: 1px solid #30343d;
-
-  border-radius: 10px;
-
   display: flex;
-
   flex-direction: column;
-
-  align-items: center;
-
-  justify-content: center;
-
+  gap: 10px;
+  min-width: 0;
+  padding: 12px;
   box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background: var(--surface);
+  color: inherit;
+  font-family: var(--font);
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+
+  &:hover {
+    border-color: rgba(46, 160, 255, 0.5);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
 }
-
-
-/* =====================================================
-   CATEGORY ICON
-   ===================================================== */
 
 .category-icon {
-  width: 55px;
-
-  height: 55px;
-
-  margin-bottom: 10px;
-
-  background: #11141a;
-
-  border-radius: 12px;
-
   display: flex;
-
   align-items: center;
-
   justify-content: center;
-
-  font-size: 27px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--tile);
+  color: var(--accent);
 }
 
+.category-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 6px;
+}
 
-/* =====================================================
-   CATEGORY NAME
-   ===================================================== */
+.category-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
 
 .category-name {
-  color: #ffffff;
-
-  font-size: 11px;
-
-  font-weight: bold;
-
-  text-align: center;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 800;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
+.category-description {
+  overflow: hidden;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 
-/* =====================================================
-   BOTTOM NAVIGATION
-   ===================================================== */
-
-.bottom-navigation {
-  width: 100%;
-
-  height: 78px;
-
-  min-height: 78px;
-
-  background: #1a1d24;
-
-  border-radius: 16px 16px 0 0;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: space-around;
-
-  padding: 0 25px;
-
-  box-sizing: border-box;
-
+.category-chevron {
   flex-shrink: 0;
-
-  z-index: 100;
+  margin-bottom: 2px;
+  color: var(--accent);
 }
 
+/* BOTTOM NAVIGATION */
+.bottom-navigation {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  height: calc(76px + env(safe-area-inset-bottom, 0px));
+  padding: 0 8px env(safe-area-inset-bottom, 0px);
+  box-sizing: border-box;
+  border-top: 1px solid var(--border);
+  background: var(--nav);
 
-/* =====================================================
-   NAVIGATION BUTTONS
-   ===================================================== */
+  button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    font-family: var(--font);
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 
-.bottom-navigation button {
-  width: 42px;
+    i {
+      display: flex;
+      font-size: 22px;
+    }
 
-  height: 42px;
+    span {
+      font-size: 11px;
+      font-weight: 600;
+    }
 
-  padding: 0;
+    &:active {
+      transform: scale(0.94);
+    }
 
-  margin: 0;
+    &.active {
+      color: var(--accent);
 
-  border: none;
-
-  background: transparent;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  cursor: pointer;
-}
-
-
-/* =====================================================
-   NAVIGATION ICONS
-   ===================================================== */
-
-.bottom-navigation i {
-  font-size: 22px;
-
-  color: #ffffff;
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-}
-
-
-/* =====================================================
-   ACTIVE CATEGORIES ICON
-   ===================================================== */
-
-.bottom-navigation button:nth-child(2) i {
-  color: #0c8ce9;
-}
-
-
-/* =====================================================
-   TABLET / DESKTOP
-   ===================================================== */
-
-@media (min-width: 421px) {
-
-  .categories-page {
-    width: 420px;
+      span {
+        font-weight: 700;
+      }
+    }
   }
-
 }
-
-
-/* =====================================================
-   SMALL PHONE
-   ===================================================== */
 
 @media (max-width: 380px) {
-
-  .top-header {
-    height: 50px;
-
-    padding: 0 12px;
+  .top-section,
+  .content-scroll {
+    padding-left: 14px;
+    padding-right: 14px;
   }
-
-
-  .page-title {
-    font-size: 15px;
-  }
-
-
-  .search-box {
-    height: 34px;
-
-    margin-bottom: 14px;
-  }
-
-
-  .section-title {
-    font-size: 12px;
-
-    margin-bottom: 10px;
-  }
-
-
-  .category-grid {
-    gap: 9px;
-  }
-
-
-  .category-card {
-    height: 110px;
-  }
-
-
-  .category-icon {
-    width: 48px;
-
-    height: 48px;
-
-    font-size: 23px;
-  }
-
-
-  .category-name {
-    font-size: 10px;
-  }
-
-
-  .bottom-navigation {
-    height: 68px;
-
-    min-height: 68px;
-
-    padding: 0 18px;
-
-    border-radius: 14px 14px 0 0;
-  }
-
-
-  .bottom-navigation button {
-    width: 38px;
-
-    height: 38px;
-  }
-
-
-  .bottom-navigation i {
-    font-size: 20px;
-  }
-
 }
 
-
-/* =====================================================
-   VERY SMALL PHONE
-   ===================================================== */
-
-@media (max-width: 320px) {
-
-  .top-header {
-    height: 45px;
+@media (min-width: 421px) {
+  .categories-page {
+    border-left: 1px solid rgba(255, 255, 255, 0.04);
+    border-right: 1px solid rgba(255, 255, 255, 0.04);
   }
-
-
-  .search-box {
-    height: 31px;
-  }
-
-
-  .category-card {
-    height: 95px;
-  }
-
-
-  .category-icon {
-    width: 42px;
-
-    height: 42px;
-
-    font-size: 20px;
-
-    margin-bottom: 7px;
-  }
-
-
-  .category-name {
-    font-size: 9px;
-  }
-
-
-  .bottom-navigation {
-    height: 60px;
-
-    min-height: 60px;
-
-    padding: 0 12px;
-
-    border-radius: 12px 12px 0 0;
-  }
-
-
-  .bottom-navigation button {
-    width: 34px;
-
-    height: 34px;
-  }
-
-
-  .bottom-navigation i {
-    font-size: 18px;
-  }
-
 }

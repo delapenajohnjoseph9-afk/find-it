@@ -177,3 +177,100 @@ ion-content {
   opacity: 0.85;
   cursor: not-allowed;
 }
+
+/* ==============================
+   SHOW PASSWORD
+   ============================== */
+
+.small-option {
+
+  width: 82%;
+
+  margin: 2px auto 10px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  cursor: pointer;
+
+  user-select: none;
+
+}
+
+
+.small-box {
+
+  width: 17px;
+
+  height: 17px;
+
+  border: 1px solid #0c8ce9;
+
+  border-radius: 3px;
+
+  background: transparent;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  flex-shrink: 0;
+
+}
+
+
+.small-box.checked {
+
+  background: #0c8ce9;
+
+  color: #ffffff;
+
+}
+
+
+.small-box.checked span {
+
+  font-size: 12px;
+
+  font-weight: bold;
+
+  line-height: 1;
+
+}
+
+
+.small-line {
+
+  color: #888888;
+
+  font-size: 10px;
+
+  line-height: 17px;
+
+}
+
+
+/* ==============================
+   ERROR MESSAGE
+   ============================== */
+
+.error-message {
+
+  width: 82%;
+
+  margin: 0 auto 8px;
+
+  color: #0c8ce9;
+
+  font-size: 10px;
+
+  text-align: left;
+
+}

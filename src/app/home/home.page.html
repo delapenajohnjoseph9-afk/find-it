@@ -1,491 +1,161 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [scrollY]="false">
 
   <div class="home-page">
 
-    <!-- =================================================
-         TOP SECTION
-         ================================================= -->
-
+    <!-- TOP SECTION (stays fixed) -->
     <div class="top-section">
 
       <!-- HEADER -->
-      <div class="top-header">
+      <header class="app-header">
+        <div class="greeting">
+          <div class="greeting-small">Good day</div>
+          <h1 class="greeting-title">Find the best price</h1>
+        </div>
 
-        <button class="menu-button">
-          ☰
+        <button type="button" class="bell-button" aria-label="Notifications" (click)="goToNotifications()">
+          <i class="fi fi-rs-bell"></i>
+          <span class="notification-dot"></span>
         </button>
+      </header>
 
-        <div class="profile-button"></div>
+      <!-- SEARCH + SCAN -->
+      <div class="search-row">
+        <div class="search-box">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+          </svg>
+          <input
+            type="text"
+            placeholder="Search products"
+            aria-label="Search products"
+            [value]="searchTerm"
+            (input)="onSearch($event)">
+        </div>
 
+        <button type="button" class="scan-button" aria-label="Scan barcode" (click)="goToScan()">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M8 9v6M12 9v6M16 9v6"/>
+          </svg>
+        </button>
       </div>
 
-
-      <!-- SEARCH -->
-      <div class="search-box">
-
-        <span class="search-icon">⌕</span>
-
-        <input
-          type="text"
-          placeholder="Search..."
-        />
-
+      <!-- CATEGORY CHIPS -->
+      <div class="chips" role="tablist" aria-label="Categories">
+        <button
+          type="button"
+          class="chip"
+          role="tab"
+          *ngFor="let category of ['All', 'Phones', 'Laptops', 'Audio', 'Gaming']"
+          [class.active]="selectedCategory === category"
+          [attr.aria-selected]="selectedCategory === category"
+          (click)="setCategory(category)">
+          {{ category }}
+        </button>
       </div>
 
-
-      <!-- =================================================
-           FEATURED PRODUCTS
-           ================================================= -->
-
-      <div class="featured-wrapper">
-
+      <!-- FEATURED DEAL -->
+      <div class="featured-viewport">
         <div class="featured-track">
 
-
-          <!-- FEATURED 1 -->
-
           <div class="featured-slide">
-
-            <div class="featured-image">
-
-              <img
-                src="assets/iphone15.jpg"
-                alt="iPhone 15"
-              >
-
-            </div>
-
+            <div class="featured-image"><img src="assets/iphone15.jpg" alt="iPhone 15"></div>
             <div class="featured-info">
-
-              <div class="featured-label">
-                Featured Deal
-              </div>
-
-              <div class="featured-name">
-                iPhone 15
-              </div>
-
-              <div class="featured-price">
-                From ₱45,999
-              </div>
-
+              <div class="featured-label">FEATURED DEAL</div>
+              <div class="featured-name">iPhone 15</div>
+              <div class="featured-price">From ₱45,999</div>
+              <div class="featured-link">Compare prices →</div>
             </div>
-
-            <div class="featured-arrow">
-              →
-            </div>
-
           </div>
 
-
-          <!-- FEATURED 2 -->
-
           <div class="featured-slide">
-
-            <div class="featured-image">
-
-              <img
-                src="assets/rog.jpg"
-                alt="ASUS ROG Laptop"
-              >
-
-            </div>
-
+            <div class="featured-image"><img src="assets/rog.jpg" alt="ASUS ROG Laptop"></div>
             <div class="featured-info">
-
-              <div class="featured-label">
-                Featured Deal
-              </div>
-
-              <div class="featured-name">
-                ASUS ROG Laptop
-              </div>
-
-              <div class="featured-price">
-                From ₱65,999
-              </div>
-
+              <div class="featured-label">FEATURED DEAL</div>
+              <div class="featured-name">ASUS ROG Laptop</div>
+              <div class="featured-price">From ₱65,999</div>
+              <div class="featured-link">Compare prices →</div>
             </div>
-
-            <div class="featured-arrow">
-              →
-            </div>
-
           </div>
 
-
-          <!-- FEATURED 3 -->
-
           <div class="featured-slide">
-
-            <div class="featured-image">
-
-              <img
-                src="assets/sony.jpg"
-                alt="Sony Headphones"
-              >
-
-            </div>
-
+            <div class="featured-image"><img src="assets/sony.jpg" alt="Sony Headphones"></div>
             <div class="featured-info">
-
-              <div class="featured-label">
-                Featured Deal
-              </div>
-
-              <div class="featured-name">
-                Sony Headphones
-              </div>
-
-              <div class="featured-price">
-                From ₱8,999
-              </div>
-
+              <div class="featured-label">FEATURED DEAL</div>
+              <div class="featured-name">Sony Headphones</div>
+              <div class="featured-price">From ₱8,999</div>
+              <div class="featured-link">Compare prices →</div>
             </div>
-
-            <div class="featured-arrow">
-              →
-            </div>
-
           </div>
-
 
         </div>
-
       </div>
 
-
-      <!-- FEATURED DOTS -->
-
-      <div class="carousel-dots">
-
+      <div class="carousel-dots" aria-hidden="true">
         <span class="dot-1"></span>
-
         <span class="dot-2"></span>
-
         <span class="dot-3"></span>
-
       </div>
-
 
     </div>
 
-
-    <!-- =================================================
-         PRICE COMPARISON
-         ================================================= -->
-
+    <!-- SCROLLING PRODUCT LIST -->
     <div class="content-scroll">
 
-
-      <!-- SECTION TITLE -->
-
-      <div class="section-title">
-        PRICE COMPARISON
+      <!-- TRENDING COMPARISONS -->
+      <div class="section-header">
+        <h2 class="section-title">Trending comparisons</h2>
+        <span class="see-all">See all</span>
       </div>
 
+      <div class="product-grid">
+        <div class="product-card" *ngFor="let product of visibleProducts">
 
-      <!-- =================================================
-           IPHONE 15
-           ================================================= -->
-
-      <div class="comparison-card">
-
-        <div class="product-summary">
-
-          <div class="comparison-image">
-
-            <img
-              src="assets/iphone15.jpg"
-              alt="iPhone 15"
-            >
-
+          <div class="product-image">
+            <img [src]="product.image" [alt]="product.name">
           </div>
 
+          <div class="product-name">{{ product.name }}</div>
+          <div class="product-store">Lowest at {{ product.stores[0]?.name }}</div>
 
-          <div class="product-details">
-
-            <div class="product-name">
-              iPhone 15
-            </div>
-
-            <div class="lowest-price">
-              Lowest ₱45,999
-            </div>
-
+          <div class="product-bottom">
+            <span class="product-price">{{ product.lowestPrice }}</span>
+            <span class="saving-badge" *ngIf="getSaving(product)">{{ getSaving(product) }}</span>
           </div>
 
         </div>
-
-
-        <div class="store-list">
-
-          <div class="store-row">
-
-            <span class="store-name">
-              Store A
-            </span>
-
-            <span class="store-price">
-              ₱45,999
-            </span>
-
-          </div>
-
-
-          <div class="store-row">
-
-            <span class="store-name">
-              Store B
-            </span>
-
-            <span class="store-price">
-              ₱47,500
-            </span>
-
-          </div>
-
-
-          <div class="store-row">
-
-            <span class="store-name">
-              Store C
-            </span>
-
-            <span class="store-price">
-              ₱46,200
-            </span>
-
-          </div>
-
-        </div>
-
       </div>
 
-
-      <!-- =================================================
-           ASUS ROG LAPTOP
-           ================================================= -->
-
-      <div class="comparison-card">
-
-        <div class="product-summary">
-
-          <div class="comparison-image">
-
-            <img
-              src="assets/rog.jpg"
-              alt="ASUS ROG Laptop"
-            >
-
-          </div>
-
-
-          <div class="product-details">
-
-            <div class="product-name">
-              ASUS ROG Laptop
-            </div>
-
-            <div class="lowest-price">
-              Lowest ₱65,999
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="store-list">
-
-          <div class="store-row">
-
-            <span class="store-name">
-              Store A
-            </span>
-
-            <span class="store-price">
-              ₱65,999
-            </span>
-
-          </div>
-
-
-          <div class="store-row">
-
-            <span class="store-name">
-              Store B
-            </span>
-
-            <span class="store-price">
-              ₱68,500
-            </span>
-
-          </div>
-
-
-          <div class="store-row">
-
-            <span class="store-name">
-              Store C
-            </span>
-
-            <span class="store-price">
-              ₱67,200
-            </span>
-
-          </div>
-
-        </div>
-
+      <div class="no-results" *ngIf="visibleProducts.length === 0">
+        <div class="no-results-title">No products found</div>
+        <div class="no-results-text">Try searching for another product.</div>
       </div>
-
-
-      <!-- =================================================
-           SONY HEADPHONES
-           ================================================= -->
-
-      <div class="comparison-card">
-
-        <div class="product-summary">
-
-          <div class="comparison-image">
-
-            <img
-              src="assets/sony.jpg"
-              alt="Sony Headphones"
-            >
-
-          </div>
-
-
-          <div class="product-details">
-
-            <div class="product-name">
-              Sony Headphones
-            </div>
-
-            <div class="lowest-price">
-              Lowest ₱8,999
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <div class="store-list">
-
-          <div class="store-row">
-
-            <span class="store-name">
-              Store A
-            </span>
-
-            <span class="store-price">
-              ₱8,999
-            </span>
-
-          </div>
-
-
-          <div class="store-row">
-
-            <span class="store-name">
-              Store B
-            </span>
-
-            <span class="store-price">
-              ₱9,500
-            </span>
-
-          </div>
-
-
-          <div class="store-row">
-
-            <span class="store-name">
-              Store C
-            </span>
-
-            <span class="store-price">
-              ₱9,200
-            </span>
-
-          </div>
-
-        </div>
-
-      </div>
-
 
     </div>
 
+    <!-- BOTTOM NAVIGATION -->
+    <nav class="bottom-navigation" aria-label="Main">
 
-    <!-- =================================================
-         BOTTOM NAVIGATION
-         ================================================= -->
-
-    <div class="bottom-navigation">
-
-
-      <!-- HOME -->
-
-      <button
-        type="button">
-
+      <button type="button" class="active" aria-current="page">
         <i class="fi fi-rs-home"></i>
-
+        <span>Home</span>
       </button>
 
-
-      <!-- CATEGORIES -->
-
-      <button
-        type="button"
-        class="categories-button"
-        (click)="goToCategories()">
-
+      <button type="button" (click)="goToCategories()">
         <i class="fi fi-rs-apps"></i>
-
+        <span>Categories</span>
       </button>
 
-
-      <!-- SCAN -->
-
-      <button
-        type="button"
-        (click)="goToScan()">
-
-        <i class="fi fi-rs-barcode-scan"></i>
-
-      </button>
-
-
-      <!-- MESSAGE -->
-
-      <button
-        type="button"
-        (click)="goToMessage()">
-
+      <button type="button" (click)="goToMessage()">
         <i class="fi fi-rs-comment"></i>
-
+        <span>Messages</span>
       </button>
 
+      <button type="button" (click)="goToProfile()">
+        <i class="fi fi-rs-user"></i>
+        <span>Profile</span>
+      </button>
 
-      <!-- PROFILE -->
-
-      <button
-  type="button"
-  (click)="goToProfile()">
-
-  <i class="fi fi-rs-user"></i>
-
-</button>
-
-
-    </div>
-
+    </nav>
 
   </div>
 

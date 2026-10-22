@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/angular';
+import { IonContent } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 import { PRODUCTS, Product } from '../data/products';
@@ -9,9 +9,11 @@ import { PRODUCTS, Product } from '../data/products';
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, CommonModule]
+  imports: [IonContent, CommonModule]
 })
-export class HomePage {
+export class HomePage implements OnInit, OnDestroy {
+
+  @ViewChild('featuredViewport') featuredViewport?: ElementRef<HTMLDivElement>;
 
   searchTerm = '';
   selectedCategory = 'All';
@@ -19,7 +21,99 @@ export class HomePage {
 
   products: Product[] = PRODUCTS;
 
+  // Featured Deals Carousel
+  activeDealIndex = 0;
+  private autoSlideTimer: any;
+
+  featuredDeals = [
+    {
+      id: 1,
+      name: 'iPhone 15',
+      image: 'assets/iphone15.jpg',
+      price: 'From ₱45,999',
+      label: 'FEATURED DEAL'
+    },
+    {
+      id: 2,
+      name: 'ASUS ROG Laptop',
+      image: 'assets/rog.jpg',
+      price: 'From ₱65,999',
+      label: 'FEATURED DEAL'
+    },
+    {
+      id: 3,
+      name: 'Sony WH-1000XM5',
+      image: 'assets/sony.jpg',
+      price: 'From ₱8,999',
+      label: 'FEATURED DEAL'
+    }
+  ];
+
+  private failedImages = new Set<string>();
+
   constructor(private router: Router) {}
+
+  ngOnInit() {
+    this.startAutoSlide();
+  }
+
+  ngOnDestroy() {
+    this.stopAutoSlide();
+  }
+
+  // ==============================
+  // FEATURED DEALS CAROUSEL
+  // ==============================
+
+  onFeaturedScroll(event: Event) {
+    const el = event.target as HTMLElement;
+    if (!el || !el.clientWidth) return;
+    const index = Math.round(el.scrollLeft / el.clientWidth);
+    if (index >= 0 && index < this.featuredDeals.length && index !== this.activeDealIndex) {
+      this.activeDealIndex = index;
+    }
+  }
+
+  scrollToDeal(index: number) {
+    this.activeDealIndex = index;
+    if (!this.featuredViewport) return;
+    const el = this.featuredViewport.nativeElement;
+    el.scrollTo({
+      left: el.clientWidth * index,
+      behavior: 'smooth'
+    });
+  }
+
+  openFeaturedDeal(deal: any) {
+    this.router.navigate(['/product', deal.id]);
+  }
+
+  startAutoSlide() {
+    this.stopAutoSlide();
+    this.autoSlideTimer = setInterval(() => {
+      const nextIndex = (this.activeDealIndex + 1) % this.featuredDeals.length;
+      this.scrollToDeal(nextIndex);
+    }, 4500);
+  }
+
+  stopAutoSlide() {
+    if (this.autoSlideTimer) {
+      clearInterval(this.autoSlideTimer);
+      this.autoSlideTimer = null;
+    }
+  }
+
+  pauseAutoSlide() {
+    this.stopAutoSlide();
+  }
+
+  resumeAutoSlide() {
+    this.startAutoSlide();
+  }
+
+  // ==============================
+  // SEARCH & FILTER
+  // ==============================
 
   onSearch(event: any) {
     this.searchTerm = event.target.value;
@@ -35,10 +129,10 @@ export class HomePage {
     this.selectedCategory = category;
   }
 
- get visibleProducts() {
-  if (this.selectedCategory === 'All') return this.filteredProducts;
-  return this.filteredProducts.filter(p => p.categories.includes(this.selectedCategory));
-}
+  get visibleProducts() {
+    if (this.selectedCategory === 'All') return this.filteredProducts;
+    return this.filteredProducts.filter(p => p.categories.includes(this.selectedCategory));
+  }
 
   // Tap a product -> product page with the store list
   openProduct(product: Product) {
@@ -55,6 +149,22 @@ export class HomePage {
     const difference = Math.max(...prices) - Math.min(...prices);
     return difference > 0 ? '−₱' + difference.toLocaleString('en-PH') : '';
   }
+
+  // ==============================
+  // IMAGE ERROR FALLBACK
+  // ==============================
+
+  onImageError(name: string) {
+    this.failedImages.add(name);
+  }
+
+  imageFailed(name: string): boolean {
+    return this.failedImages.has(name);
+  }
+
+  // ==============================
+  // NAVIGATION
+  // ==============================
 
   goToCategories()    { this.router.navigate(['/categories']); }
   goToScan()          { this.router.navigate(['/scan']); }

@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true">
+  <div class="product-page" *ngIf="product; else notFound">
+
+    <button type="button" class="back-button" (click)="goBack()">‹ Back</button>
+
+    <div class="hero-image">
+      <img [src]="product.image" [alt]="product.name">
+    </div>
+
+    <h1 class="product-title">{{ product.name }}</h1>
+    <p class="product-subtitle">{{ product.stores.length }} stores sell this. Pick a store to continue your purchase there.</p>
+
+    <div class="store-list" role="radiogroup" aria-label="Stores">
+      <button
+        type="button"
+        class="store-option"
+        role="radio"
+        *ngFor="let s of product.stores; let i = index"
+        [class.selected]="selectedStore === i"
+        [attr.aria-checked]="selectedStore === i"
+        (click)="selectStore(i)">
+
+        <span class="radio-dot"></span>
+
+        <span class="store-info">
+          <span class="store-name">
+            {{ s.name }}
+            <span class="lowest-badge" *ngIf="i === 0">Lowest</span>
+          </span>
+          <span class="store-meta">{{ s.shipping }}</span>
+        </span>
+
+        <span class="store-price">{{ s.price }}</span>
+      </button>
+    </div>
+
+    <div class="cta-bar">
+      <button type="button" class="go-button" (click)="goToStore()">
+        Go to {{ store?.name }} · {{ store?.price }}
+      </button>
+      <div class="cta-note">You'll finish your purchase on {{ store?.name }}.</div>
+    </div>
+
+  </div>
+
+  <ng-template #notFound>
+    <div class="product-page">
+      <button type="button" class="back-button" (click)="goBack()">‹ Back</button>
+      <p class="product-subtitle">We couldn't find this product.</p>
+    </div>
+  </ng-template>
+</ion-content>

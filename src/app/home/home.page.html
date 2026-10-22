@@ -103,12 +103,11 @@
 
       <!-- TRENDING COMPARISONS -->
       <div class="section-header">
-        <h2 class="section-title">Trending comparisons</h2>
-        <span class="see-all">See all</span>
+        <h2 class="section-title">Trendings!</h2>
       </div>
 
       <div class="product-grid">
-        <div class="product-card" *ngFor="let product of visibleProducts">
+        <div class="product-card" *ngFor="let product of visibleProducts" (click)="openProduct(product)">
 
           <div class="product-image">
             <img [src]="product.image" [alt]="product.name">

@@ -7,103 +7,140 @@
 
       <header class="app-header">
 
-        <button
-          type="button"
-          class="back-button"
-          aria-label="Back"
-          (click)="goToHome()">
-
+        <button type="button" class="back-button" aria-label="Back" (click)="back()">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="m15 18-6-6 6-6"/>
           </svg>
-
         </button>
 
-        <div>
-          <h1 class="page-title">Messages</h1>
-          <div class="page-subtitle">
-            {{ unreadCount > 0 ? unreadCount + ' unread' : 'All caught up' }}
+        @if (view() === 'chat' && active(); as conv) {
+          <div class="header-text">
+            <h1 class="page-title">{{ conv.name }}</h1>
+            <div class="page-subtitle">{{ conv.chats.length }} messages</div>
           </div>
-        </div>
+          <button type="button" class="header-action" aria-label="Delete conversation" (click)="confirmDelete.set(true)">
+            <i class="fi fi-rs-trash"></i>
+          </button>
+        } @else {
+          <div class="header-text">
+            <h1 class="page-title">Messages</h1>
+            <div class="page-subtitle">
+              {{ unreadCount() > 0 ? unreadCount() + ' unread' : 'All caught up' }}
+            </div>
+          </div>
+          @if (unreadCount() > 0) {
+            <button type="button" class="header-action text" (click)="markAllRead()">Mark all read</button>
+          }
+        }
 
       </header>
 
-
-      <div class="search-box">
-        <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
-        </svg>
-        <input
-          type="text"
-          placeholder="Search messages"
-          aria-label="Search messages"
-          [value]="searchTerm"
-          (input)="onSearch($event)">
-      </div>
+      @if (view() === 'list') {
+        <div class="search-box">
+          <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/>
+          </svg>
+          <input type="text" placeholder="Search messages" aria-label="Search messages" [value]="searchTerm()" (input)="onSearch($event)">
+        </div>
+      }
 
     </div>
 
 
-    <!-- SCROLLING MESSAGE LIST -->
-    <div class="content-scroll">
+    @if (view() === 'list') {
 
-      <button
-        type="button"
-        class="message-item"
-        [class.unread]="message.unread"
-        *ngFor="let message of filteredMessages"
-        (click)="openMessage(message)">
+      <!-- SCROLLING MESSAGE LIST -->
+      <div class="content-scroll">
 
-        <span class="avatar" aria-hidden="true">{{ message.name.charAt(0) }}</span>
+        @for (message of filteredMessages(); track message.id) {
+          <button type="button" class="message-item" [class.unread]="message.unread" (click)="openMessage(message)">
 
-        <span class="message-info">
+            <span class="avatar" aria-hidden="true">{{ message.name.charAt(0) }}</span>
 
-          <span class="message-top">
-            <span class="message-name">{{ message.name }}</span>
-            <span class="message-time">{{ message.time }}</span>
-          </span>
+            <span class="message-info">
+              <span class="message-top">
+                <span class="message-name">{{ message.name }}</span>
+                <span class="message-time">{{ timeLabel(lastAt(message)) }}</span>
+              </span>
+              <span class="message-preview">{{ preview(message) }}</span>
+            </span>
 
-          <span class="message-preview">{{ message.preview }}</span>
+            @if (message.unread) {
+              <span class="unread-dot" aria-label="Unread"></span>
+            }
 
-        </span>
+          </button>
+        } @empty {
+          <div class="no-results">
+            @if (conversations().length === 0) {
+              <div class="no-results-title">No messages yet</div>
+              <div class="no-results-text">Conversations with sellers will show up here.</div>
+            } @else {
+              <div class="no-results-title">No messages found</div>
+              <div class="no-results-text">Try searching for another name or word.</div>
+            }
+          </div>
+        }
 
-        <span class="unread-dot" *ngIf="message.unread" aria-label="Unread"></span>
-
-      </button>
-
-
-      <div class="no-results" *ngIf="filteredMessages.length === 0">
-        <div class="no-results-title">No messages found</div>
-        <div class="no-results-text">Try searching for another name or word.</div>
       </div>
 
-    </div>
+    } @else {
+
+      <!-- CHAT THREAD -->
+      <div class="content-scroll chat-thread" #thread>
+        @for (c of active()?.chats; track c.id) {
+          <div class="bubble" [class.me]="c.from === 'me'">
+            <span class="bubble-text">{{ c.text }}</span>
+            <span class="bubble-time">{{ timeLabel(c.at) }}</span>
+          </div>
+        } @empty {
+          <div class="no-results">
+            <div class="no-results-title">No messages yet</div>
+            <div class="no-results-text">Say hello below.</div>
+          </div>
+        }
+      </div>
+
+      <div class="composer">
+        <input type="text" placeholder="Write a message" aria-label="Write a message" maxlength="500"
+               [value]="draft" (input)="onDraft($event)" (keydown.enter)="send()">
+        <button type="button" class="send-button" aria-label="Send message" [disabled]="!draft.trim()" (click)="send()">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/>
+          </svg>
+        </button>
+      </div>
+
+    }
 
 
-    <!-- BOTTOM NAVIGATION -->
-    <nav class="bottom-navigation" aria-label="Main">
+    <!-- DELETE CONFIRMATION -->
+    @if (confirmDelete()) {
+      <div class="modal-backdrop" (click)="confirmDelete.set(false)">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="del-title" (click)="$event.stopPropagation()">
+          <h2 id="del-title">Delete conversation?</h2>
+          <p>This removes the whole conversation with {{ active()?.name }}.</p>
+          <div class="modal-actions">
+            <button type="button" class="btn secondary" (click)="confirmDelete.set(false)">Cancel</button>
+            <button type="button" class="btn danger" (click)="deleteConversation()">Delete</button>
+          </div>
+        </div>
+      </div>
+    }
 
-      <button type="button" (click)="goToHome()">
-        <i class="fi fi-rs-home"></i>
-        <span>Home</span>
-      </button>
+    <!-- TOAST -->
+    <div class="toast" [class.show]="toastText()" role="status">{{ toastText() }}</div>
 
-      <button type="button" (click)="goToCategories()">
-        <i class="fi fi-rs-apps"></i>
-        <span>Categories</span>
-      </button>
 
-      <button type="button" class="active" aria-current="page">
-        <i class="fi fi-rs-comment"></i>
-        <span>Messages</span>
-      </button>
-
-      <button type="button" (click)="goToProfile()">
-        <i class="fi fi-rs-user"></i>
-        <span>Profile</span>
-      </button>
-
-    </nav>
+    <!-- BOTTOM NAVIGATION (hidden while chatting) -->
+    @if (view() === 'list') {
+      <nav class="bottom-navigation" aria-label="Main">
+        <button type="button" (click)="goToHome()"><i class="fi fi-rs-home"></i><span>Home</span></button>
+        <button type="button" (click)="goToCategories()"><i class="fi fi-rs-apps"></i><span>Categories</span></button>
+        <button type="button" class="active" aria-current="page"><i class="fi fi-rs-comment"></i><span>Messages</span></button>
+        <button type="button" (click)="goToProfile()"><i class="fi fi-rs-user"></i><span>Profile</span></button>
+      </nav>
+    }
 
   </div>
 

@@ -4,146 +4,175 @@
 
     <!-- TOP SECTION (stays fixed) -->
     <div class="top-section">
-
       <header class="app-header">
-
-        <button
-          type="button"
-          class="back-button"
-          aria-label="Back"
-          (click)="goToHome()">
-
+        <button type="button" class="back-button" aria-label="Back" (click)="back()">
           <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="m15 18-6-6 6-6"/>
           </svg>
-
         </button>
 
         <div>
-          <h1 class="page-title">Profile</h1>
-          <div class="page-subtitle">Manage your account</div>
+          <h1 class="page-title">{{ titles[view()].title }}</h1>
+          <div class="page-subtitle">{{ titles[view()].subtitle() }}</div>
         </div>
-
       </header>
-
     </div>
 
 
     <!-- SCROLLING CONTENT -->
     <div class="content-scroll">
 
-      <!-- PROFILE INFORMATION -->
-      <div class="profile-hero">
+      @switch (view()) {
 
-        <div class="profile-avatar" aria-hidden="true">J</div>
+        <!-- ================= PROFILE ================= -->
+        @case ('profile') {
 
-        <div class="profile-name">John</div>
+          <div class="profile-hero">
+            <div class="profile-avatar" aria-hidden="true">{{ initial() }}</div>
+            <div class="profile-name">{{ store.user().name }}</div>
+            <div class="profile-username">&#64;{{ store.user().username }}</div>
+          </div>
 
-        <div class="profile-username">@john</div>
+          <div class="profile-options">
+            @for (o of options; track o.view) {
+              <button type="button" class="profile-option" (click)="open(o.view)">
+                <span class="option-icon"><i class="fi" [class]="o.icon"></i></span>
+                <span class="option-text">{{ o.label }}</span>
+                <svg aria-hidden="true" class="option-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+              </button>
+            }
 
-      </div>
+            <button type="button" class="profile-option logout" (click)="confirmLogout.set(true)">
+              <span class="option-icon"><i class="fi fi-rs-sign-out-alt"></i></span>
+              <span class="option-text">Log Out</span>
+              <svg aria-hidden="true" class="option-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+          </div>
+        }
 
+        <!-- ================= EDIT PROFILE ================= -->
+        @case ('edit') {
+          <div class="field">
+            <label for="f-name">Name</label>
+            <input id="f-name" [(ngModel)]="form.name" maxlength="30" autocomplete="name">
+            @if (errors.name) { <div class="field-error">{{ errors.name }}</div> }
+          </div>
 
-      <!-- PROFILE OPTIONS -->
-      <div class="profile-options">
+          <div class="field">
+            <label for="f-username">Username</label>
+            <input id="f-username" [(ngModel)]="form.username" maxlength="20" autocapitalize="none" autocomplete="username">
+            @if (errors.username) { <div class="field-error">{{ errors.username }}</div> }
+          </div>
 
-        <!-- EDIT PROFILE -->
-        <button type="button" class="profile-option">
+          <div class="field">
+            <label for="f-email">Email</label>
+            <input id="f-email" type="email" [(ngModel)]="form.email" autocomplete="email">
+            @if (errors.email) { <div class="field-error">{{ errors.email }}</div> }
+          </div>
 
-          <span class="option-icon"><i class="fi fi-rs-user-pen"></i></span>
+          <button type="button" class="btn" (click)="saveProfile()">Save changes</button>
+        }
 
-          <span class="option-text">Edit Profile</span>
+        <!-- ================= SAVED PRODUCTS ================= -->
+        @case ('saved') {
+          @for (p of store.saved(); track p.id) {
+            <div class="list-item">
+              <span class="option-icon"><i class="fi fi-rs-heart"></i></span>
+              <div class="item-text">
+                <b>{{ p.name }}</b>
+                <small>{{ money(p.price) }}</small>
+              </div>
+              <button type="button" class="icon-btn" [attr.aria-label]="'Remove ' + p.name" (click)="removeSaved(p.id)">
+                <i class="fi fi-rs-trash"></i>
+              </button>
+            </div>
+          } @empty {
+            <div class="empty">Nothing saved yet. Tap the heart on a product to keep it here.</div>
+          }
 
-          <svg aria-hidden="true" class="option-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m9 18 6-6-6-6"/>
-          </svg>
+          @if (store.saved().length) {
+            <button type="button" class="btn secondary" (click)="clearSaved()">Remove all</button>
+          }
+        }
 
-        </button>
+        <!-- ================= PRICE ALERTS ================= -->
+        @case ('alerts') {
+          <div class="field">
+            <label for="a-product">New alert</label>
+            <input id="a-product" [(ngModel)]="alertForm.product" placeholder="Product name" maxlength="40">
+          </div>
+          <div class="add-row">
+            <input type="number" min="0" step="0.01" [(ngModel)]="alertForm.target" placeholder="Target price" aria-label="Target price">
+            <button type="button" class="btn" (click)="addAlert()">Add alert</button>
+          </div>
+          @if (alertError) { <div class="field-error">{{ alertError }}</div> }
 
+          @for (a of store.alerts(); track a.id) {
+            <div class="list-item">
+              <div class="item-text">
+                <b>{{ a.product }}</b>
+                <small>Notify at {{ money(a.target) }} or less</small>
+              </div>
+              <button type="button" class="switch" role="switch" [attr.aria-checked]="a.active" aria-label="Alert on" (click)="toggleAlert(a.id)"></button>
+              <button type="button" class="icon-btn" aria-label="Delete alert" (click)="removeAlert(a.id)">
+                <i class="fi fi-rs-trash"></i>
+              </button>
+            </div>
+          } @empty {
+            <div class="empty">No alerts yet. Add a product and a target price above.</div>
+          }
+        }
 
-        <!-- SAVED PRODUCTS -->
-        <button type="button" class="profile-option">
+        <!-- ================= SETTINGS ================= -->
+        @case ('settings') {
+          <div class="list-item">
+            <div class="item-text"><b>Push notifications</b></div>
+            <button type="button" class="switch" role="switch" [attr.aria-checked]="store.settings().push" aria-label="Push notifications" (click)="toggleSetting('push')"></button>
+          </div>
 
-          <span class="option-icon"><i class="fi fi-rs-heart"></i></span>
+          <div class="list-item">
+            <div class="item-text"><b>Email digest</b></div>
+            <button type="button" class="switch" role="switch" [attr.aria-checked]="store.settings().emailDigest" aria-label="Email digest" (click)="toggleSetting('emailDigest')"></button>
+          </div>
 
-          <span class="option-text">Saved Products</span>
+          <div class="field">
+            <label for="s-currency">Currency</label>
+            <select id="s-currency" [ngModel]="store.settings().currency" (ngModelChange)="setCurrency($event)">
+              @for (c of currencies; track c) { <option [value]="c">{{ c }}</option> }
+            </select>
+          </div>
 
-          <svg aria-hidden="true" class="option-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m9 18 6-6-6-6"/>
-          </svg>
-
-        </button>
-
-
-        <!-- PRICE ALERTS -->
-        <button type="button" class="profile-option">
-
-          <span class="option-icon"><i class="fi fi-rs-bell"></i></span>
-
-          <span class="option-text">Price Alerts</span>
-
-          <svg aria-hidden="true" class="option-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m9 18 6-6-6-6"/>
-          </svg>
-
-        </button>
-
-
-        <!-- SETTINGS -->
-        <button type="button" class="profile-option">
-
-          <span class="option-icon"><i class="fi fi-rs-settings"></i></span>
-
-          <span class="option-text">Settings</span>
-
-          <svg aria-hidden="true" class="option-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m9 18 6-6-6-6"/>
-          </svg>
-
-        </button>
-
-
-        <!-- LOG OUT -->
-        <button type="button" class="profile-option logout">
-
-          <span class="option-icon"><i class="fi fi-rs-sign-out-alt"></i></span>
-
-          <span class="option-text">Log Out</span>
-
-          <svg aria-hidden="true" class="option-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m9 18 6-6-6-6"/>
-          </svg>
-
-        </button>
-
-      </div>
+          <button type="button" class="btn secondary" (click)="resetAll()">Reset all data</button>
+        }
+      }
 
     </div>
 
 
+    <!-- LOG OUT CONFIRMATION -->
+    @if (confirmLogout()) {
+      <div class="modal-backdrop" (click)="confirmLogout.set(false)">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="lo-title" (click)="$event.stopPropagation()">
+          <h2 id="lo-title">Log out?</h2>
+          <p>You can log back in any time.</p>
+          <div class="modal-actions">
+            <button type="button" class="btn secondary" (click)="confirmLogout.set(false)">Cancel</button>
+            <button type="button" class="btn danger" (click)="logout()">Log out</button>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- TOAST -->
+    <div class="toast" [class.show]="toastText()" role="status">{{ toastText() }}</div>
+
+
     <!-- BOTTOM NAVIGATION -->
     <nav class="bottom-navigation" aria-label="Main">
-
-      <button type="button" (click)="goToHome()">
-        <i class="fi fi-rs-home"></i>
-        <span>Home</span>
-      </button>
-
-      <button type="button" (click)="goToCategories()">
-        <i class="fi fi-rs-apps"></i>
-        <span>Categories</span>
-      </button>
-
-      <button type="button" (click)="goToMessage()">
-        <i class="fi fi-rs-comment"></i>
-        <span>Messages</span>
-      </button>
-
-      <button type="button" class="active" aria-current="page">
-        <i class="fi fi-rs-user"></i>
-        <span>Profile</span>
-      </button>
-
+      <button type="button" (click)="goToHome()"><i class="fi fi-rs-home"></i><span>Home</span></button>
+      <button type="button" (click)="goToCategories()"><i class="fi fi-rs-apps"></i><span>Categories</span></button>
+      <button type="button" (click)="goToMessage()"><i class="fi fi-rs-comment"></i><span>Messages</span></button>
+      <button type="button" class="active" aria-current="page" (click)="view.set('profile')"><i class="fi fi-rs-user"></i><span>Profile</span></button>
     </nav>
 
   </div>

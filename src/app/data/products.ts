@@ -36,7 +36,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 4,
     name: 'Samsung Galaxy S25',
-    image: 'assets/galaxy-s25.jpg',
+    image: 'assets/s25.jpg',
     lowestPrice: '₱49,999',
     categories: ['Phones', 'smartphones'],
     stores: [
@@ -48,7 +48,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 5,
     name: 'Google Pixel 9',
-    image: 'assets/pixel-9.jpg',
+    image: 'assets/pixel9.jpg',
     lowestPrice: '₱39,999',
     categories: ['Phones', 'smartphones'],
     stores: [
@@ -60,7 +60,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 25,
     name: 'Samsung Galaxy S24',
-    image: 'assets/galaxy-s24.jpg',
+    image: 'assets/s24.jpg',
     lowestPrice: '₱41,499',
     categories: ['Phones', 'smartphones'],
     stores: [
@@ -72,7 +72,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 26,
     name: 'iPhone 15 Pro',
-    image: 'assets/iphone15-pro.jpg',
+    image: 'assets/ip15pro.jpg',
     lowestPrice: '₱69,999',
     categories: ['Phones', 'smartphones'],
     stores: [
@@ -84,7 +84,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 27,
     name: 'Xiaomi 14',
-    image: 'assets/xiaomi-14.jpg',
+    image: 'assets/14.jpg',
     lowestPrice: '₱35,999',
     categories: ['Phones', 'smartphones'],
     stores: [
@@ -96,7 +96,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 28,
     name: 'Google Pixel 8',
-    image: 'assets/pixel-8.jpg',
+    image: 'assets/pixel8.jpg',
     lowestPrice: '₱31,999',
     categories: ['Phones', 'smartphones'],
     stores: [
@@ -108,7 +108,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 29,
     name: 'OnePlus 12',
-    image: 'assets/oneplus-12.jpg',
+    image: 'assets/one12.jpg',
     lowestPrice: '₱48,999',
     categories: ['Phones', 'smartphones'],
     stores: [
@@ -134,7 +134,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 6,
     name: 'MacBook Air M3',
-    image: 'assets/macbook.jpg',
+    image: 'assets/m3.jpg',
     lowestPrice: '₱54,999',
     categories: ['Laptops', 'laptops'],
     stores: [
@@ -146,7 +146,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 7,
     name: 'Acer Nitro V',
-    image: 'assets/acer-nitro.jpg',
+    image: 'assets/nitro.jpg',
     lowestPrice: '₱49,999',
     categories: ['Laptops', 'Gaming', 'laptops', 'gaming'],
     stores: [
@@ -158,7 +158,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 30,
     name: 'Lenovo Legion 5',
-    image: 'assets/lenovo-legion.jpg',
+    image: 'assets/lenovo.jpg',
     lowestPrice: '₱59,999',
     categories: ['Laptops', 'Gaming', 'laptops', 'gaming'],
     stores: [
@@ -222,7 +222,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 10,
     name: 'Logitech Keyboard',
-    image: 'assets/keyboard.jpg',
+    image: 'assets/logi.jpg',
     lowestPrice: '₱2,499',
     categories: ['Accessories', 'accessories'],
     stores: [
@@ -246,7 +246,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 12,
     name: 'USB-C Hub',
-    image: 'assets/usb-hub.jpg',
+    image: 'assets/usb.jpg',
     lowestPrice: '₱1,499',
     categories: ['Accessories', 'accessories'],
     stores: [
@@ -258,7 +258,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 32,
     name: 'Razer DeathAdder Mouse',
-    image: 'assets/razer-mouse.jpg',
+    image: 'assets/mouse.jpg',
     lowestPrice: '₱1,899',
     categories: ['Accessories', 'accessories'],
     stores: [
@@ -272,7 +272,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 13,
     name: 'LG UltraGear',
-    image: 'assets/lg-monitor.jpg',
+    image: 'assets/lg.jpg',
     lowestPrice: '₱15,999',
     categories: ['Monitors', 'monitors'],
     stores: [
@@ -284,7 +284,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 14,
     name: 'Samsung Odyssey',
-    image: 'assets/odyssey.jpg',
+    image: 'assets/samsung.jpg',
     lowestPrice: '₱18,999',
     categories: ['Monitors', 'monitors'],
     stores: [
@@ -296,7 +296,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 15,
     name: 'ASUS TUF Gaming',
-    image: 'assets/asus-monitor.jpg',
+    image: 'assets/asus.jpg',
     lowestPrice: '₱16,999',
     categories: ['Monitors', 'monitors'],
     stores: [
@@ -348,7 +348,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 19,
     name: 'Canon EOS R50',
-    image: 'assets/canon-r50.jpg',
+    image: 'assets/cam.jpg',
     lowestPrice: '₱39,999',
     categories: ['Cameras', 'cameras'],
     stores: [
@@ -360,7 +360,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 20,
     name: 'Sony A6400',
-    image: 'assets/sony-a6400.jpg',
+    image: 'assets/sonyjpg.jpg',
     lowestPrice: '₱45,999',
     categories: ['Cameras', 'cameras'],
     stores: [
@@ -372,7 +372,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 21,
     name: 'Nikon Z50',
-    image: 'assets/nikon-z50.jpg',
+    image: 'assets/nikon.jpg',
     lowestPrice: '₱42,999',
     categories: ['Cameras', 'cameras'],
     stores: [
@@ -386,7 +386,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 22,
     name: 'Apple Watch',
-    image: 'assets/apple-watch.jpg',
+    image: 'assets/apple.jpg',
     lowestPrice: '₱19,999',
     categories: ['Smartwatches', 'smartwatches'],
     stores: [
@@ -398,7 +398,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 23,
     name: 'Galaxy Watch',
-    image: 'assets/galaxy-watch.jpg',
+    image: 'assets/galaxy.jpg',
     lowestPrice: '₱14,999',
     categories: ['Smartwatches', 'smartwatches'],
     stores: [
@@ -410,7 +410,7 @@ export const PRODUCTS: Product[] = [
   {
     id: 24,
     name: 'Huawei Watch',
-    image: 'assets/huawei-watch.jpg',
+    image: 'assets/huawei.jpg',
     lowestPrice: '₱9,999',
     categories: ['Smartwatches', 'smartwatches'],
     stores: [
